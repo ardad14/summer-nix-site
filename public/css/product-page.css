@@ -1,0 +1,46 @@
+.nav-container {
+    font-size: 20px;
+}
+
+.content-container {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.product-path {
+    color: darkgray;
+    font-size: 20px;
+}
+
+.product-container {
+
+}
+
+.product-img {
+    height: 500px;
+    /*margin-left: 20px;*/
+}
+
+.product-text {
+    text-align: left;
+}
+
+.about {
+    margin-left: 250px;
+    margin-top: 70px;
+    text-align: left;
+}
+
+.livelib-rate {
+    border-left: 1px solid grey;
+}
+
+.rate-text {
+    text-decoration: none;
+    color: grey;
+    font-size: 19px;
+}
+
+.info {
+    margin: 0 auto;
+}
