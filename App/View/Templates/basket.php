@@ -1,113 +1,97 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basket</title>
-    <link rel="stylesheet" href="../../../public/css/basket.css">
-    <script src="https://kit.fontawesome.com/7c16640ea8.js" crossorigin="anonymous"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,700;1,400;1,500&family=Roboto+Mono:ital,wght@0,300;1,300;1,400&display=swap" rel="stylesheet">
-</head>
-<body>
-    <main>    
-        <div class="container">
-            <div class="basket">
-                <p class="p_basket">Корзина <i class="fas fa-cart-plus"></i></p>
-                <hr>
-                <section>
-                <div class="basket__item">
-                    <div class="picture">
-                      <img src="../../../public/image/monday.jpg" alt="">
-                    </div>
-
-                    <div class="name">
-                      <p>Понедельник начинается в субботу </p>
-                      <div class="description">
-                        Программист Александр Привалов отправляется в путешествие по России.
-                        В пути, неподалеку от Соловца, он встречает двух сотрудников местного вуза со
-                        странным названием НИИЧАВО. 
-                        А затем соглашается переночевать в институтском музее
-                        Изнакурнож на улице Лукоморье и практически попадает в сказочную реальность…
-                      </div>
-                    </div> 
-
-                    <div class="price">
-                      <p>60 грн</p>
-                    </div>
+<main>
+    <div class="container">
+        <div class="basket">
+            <p class="p_basket">Корзина <i class="fas fa-cart-plus"></i></p>
+            <hr>
+            <section>
+            <div class="basket__item">
+                <div class="picture">
+                  <img src="../monday.jpg" alt="">
                 </div>
-                <div class="btn_basket">
-                  <button class="delete">Удалить с корзины</button>
-                  <button class="buy">Купить</button>
+
+                <div class="name">
+                  <p>Понедельник начинается в субботу </p>
+                  <div class="description">
+                    Программист Александр Привалов отправляется в путешествие по России.
+                    В пути, неподалеку от Соловца, он встречает двух сотрудников местного вуза со
+                    странным названием НИИЧАВО.
+                    А затем соглашается переночевать в институтском музее
+                    Изнакурнож на улице Лукоморье и практически попадает в сказочную реальность…
+                  </div>
                 </div>
-              </section>
 
-              <hr>
-
-               <section>
-                <div class="basket__item">
-                  <div class="picture">
-                    <img src="../../../public/image/ayn-rend-atlant-raspravil-plechi.jpg"  alt="">
-                  </div>
-
-                  <div class="name">
-                    <p>Атлант расправил плечи </p>
-                    <div class="description">
-                      В США наступило время социализма. «Политика равных возможностей»
-                      – вот кредо тех, кто пришел к власти.
-                      Вот только социалисты не предвидели, что их реформы приведут к краху
-                      экономики и развалят институт американского бизнеса… Повсюду начинают
-                      исчезать знаменитости и богатейшие олигархи страны.
-                    </div>
-                  </div> 
-
-                  <div class="price">
-                    <p>60 грн</p>
-                  </div>
-              </div>
-              <div class="btn_basket">
-                <button class="delete">Удалить с корзины</button>
-                <button class="buy">Купить</button>
-              </div>
-               </section>
-
-               <hr>
-
-               <section>
-                <div class="basket__item">
-                  <div class="picture">
-                    <img src="../../../public/image/ernest-heminguey-starik-i-more.jpg" alt="">
-                  </div>
-
-                  <div class="name">
-                    <p>Старик и море </p>
-                    <div class="description">
-                      "Читайте то, что я пишу, и не ищите ничего, кроме собственного удовольствия.
-                      А если вы еще что-нибудь найдете, это уж будет ваш вклад в прочитанное. 
-                      Не было еще хорошей книги, которая возникла бы из заранее выдуманного символа, 
-                      запеченного в книгу, как изюм в сладкую булку… Я попытался дать настоящего старика 
-                      и настоящего мальчика, настоящее море и настоящую рыбу, и настоящих акул. 
-                      И, если мне это удалось сделать достаточно хорошо и правдиво, они, конечно, 
-                      могут быть истолкованы по-разному"
-                    </div>
-                  </div> 
-
-                  <div class="price">
-                    <p>60 грн</p>
-                  </div>
-              </div>
-              <div class="btn_basket">
-                <button class="delete">Удалить с корзины</button>
-                <button class="buy">Купить</button>
-              </div>
-               </section>
-
-
+                <div class="price">
+                  <p>60 грн</p>
+                </div>
             </div>
+            <div class="btn_basket">
+              <button class="delete">Удалить с корзины</button>
+              <button class="buy">Купить</button>
+            </div>
+          </section>
+
+          <hr>
+
+           <section>
+            <div class="basket__item">
+              <div class="picture">
+                <img src="../../../public/image/ayn-rend-atlant-raspravil-plechi.jpg"  alt="">
+              </div>
+
+              <div class="name">
+                <p>Атлант расправил плечи </p>
+                <div class="description">
+                  В США наступило время социализма. «Политика равных возможностей»
+                  – вот кредо тех, кто пришел к власти.
+                  Вот только социалисты не предвидели, что их реформы приведут к краху
+                  экономики и развалят институт американского бизнеса… Повсюду начинают
+                  исчезать знаменитости и богатейшие олигархи страны.
+                </div>
+              </div>
+
+              <div class="price">
+                <p>60 грн</p>
+              </div>
+          </div>
+          <div class="btn_basket">
+            <button class="delete">Удалить с корзины</button>
+            <button class="buy">Купить</button>
+          </div>
+           </section>
+
+           <hr>
+
+           <section>
+            <div class="basket__item">
+              <div class="picture">
+                <img src="../../../public/image/ernest-heminguey-starik-i-more.jpg" alt="">
+              </div>
+
+              <div class="name">
+                <p>Старик и море </p>
+                <div class="description">
+                  "Читайте то, что я пишу, и не ищите ничего, кроме собственного удовольствия.
+                  А если вы еще что-нибудь найдете, это уж будет ваш вклад в прочитанное.
+                  Не было еще хорошей книги, которая возникла бы из заранее выдуманного символа,
+                  запеченного в книгу, как изюм в сладкую булку… Я попытался дать настоящего старика
+                  и настоящего мальчика, настоящее море и настоящую рыбу, и настоящих акул.
+                  И, если мне это удалось сделать достаточно хорошо и правдиво, они, конечно,
+                  могут быть истолкованы по-разному"
+                </div>
+              </div>
+
+              <div class="price">
+                <p>60 грн</p>
+              </div>
+          </div>
+          <div class="btn_basket">
+            <button class="delete">Удалить с корзины</button>
+            <button class="buy">Купить</button>
+          </div>
+           </section>
+
+
         </div>
-    </main>
-</body>
-</html>
+    </div>
+</main>
+
