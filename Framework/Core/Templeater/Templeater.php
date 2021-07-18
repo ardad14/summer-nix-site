@@ -1,15 +1,14 @@
 <?php
 
-namespace framework\core;
+namespace Framework\Core\Templeater;
 
 class Templeater
 {
     public function renderContent($controller, $view, $vars = [])
     {
         ob_start();
-        require_once "../../../App/View/Templates/header.php";
-        require "../../../App/View/Templates" . $controller . '/' . $view . ".php";
+        require "../App/View/Templates/"  . $view . ".php";
         $content = ob_get_clean();
-        //require "../../../App/View/Layouts/layout.php";
+        require "../App/View/Layouts/Layout.php";
     }
 }
