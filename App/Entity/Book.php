@@ -1,6 +1,6 @@
 <?php
 
-namespace app\entity;
+namespace App\Entity;
 
 class Book
 {
