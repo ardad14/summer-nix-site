@@ -1,16 +1,20 @@
 <?php
 
-namespace app\controller;
+namespace App\Controller;
 
-use framework\core\Templeater;
-use
+use Framework\Core\Templeater\Templeater;
 
 class MainController
 {
-    private Templeater $templeat;
+    private Templeater $templeater;
+
+    public function __construct()
+    {
+        $this->templeater = new Templeater();
+    }
 
     public function main()
     {
-        $this->templeat->renderContent('main', 'main');
+        $this->templeater->renderContent('main', 'main');
     }
 }

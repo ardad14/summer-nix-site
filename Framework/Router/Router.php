@@ -1,6 +1,6 @@
 <?php
 
-namespace framework\core\Router;
+namespace Framework\Router;
 
 class Router
 {
@@ -9,8 +9,7 @@ class Router
 
     public function __construct()
     {
-
-        $routes = require_once("../Config/routes.php");
+        $routes = require_once("../Framework/Config/routes.php");
         self::$routes = $routes;
     }
 
@@ -44,8 +43,8 @@ class Router
         if ($this->routeCheck($this->removeQueryString($url)))
         {
             $controller = ucfirst(self::$route['controller']) . "Controller";
-            $act = ucfirst(self::$route['action']);
-            $str = "app\\controllers\\$controller";
+            $act = self::$route['action'];
+            $str = "App\\Controller\\$controller";
             if (class_exists($str)) {
                 $object = new $str($url);
                 $object->$act();
