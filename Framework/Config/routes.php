@@ -9,5 +9,9 @@ return [
         'controller' => 'main',
         "action" => "main"
     ],
+    '^product$' => [
+        'controller' => 'product',
+        "action" => "product"
+    ],
 
 ];

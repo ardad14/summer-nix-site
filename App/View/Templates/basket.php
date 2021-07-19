@@ -6,7 +6,7 @@
             <section>
             <div class="basket__item">
                 <div class="picture">
-                  <img src="../monday.jpg" alt="">
+                  <img src="image/monday.jpg" alt="">
                 </div>
 
                 <div class="name">
@@ -35,7 +35,7 @@
            <section>
             <div class="basket__item">
               <div class="picture">
-                <img src="../../../public/image/ayn-rend-atlant-raspravil-plechi.jpg"  alt="">
+                <img src="image/ayn-rend-atlant-raspravil-plechi.jpg"  alt="">
               </div>
 
               <div class="name">
@@ -64,7 +64,7 @@
            <section>
             <div class="basket__item">
               <div class="picture">
-                <img src="../../../public/image/ernest-heminguey-starik-i-more.jpg" alt="">
+                <img src="image/ernest-heminguey-starik-i-more.jpg" alt="">
               </div>
 
               <div class="name">

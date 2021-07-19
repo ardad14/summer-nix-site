@@ -14,7 +14,9 @@ class BookModel extends Model
                 $this->products[$id]["name"],
                 $this->products[$id]["author"],
                 $this->products[$id]["price"],
-                $this->products[$id]["amount"]
+                $this->products[$id]["amount"],
+                $this->products[$id]["image"],
+                $this->products[$id]["description"]
             );
         }
         return null;
@@ -28,7 +30,9 @@ class BookModel extends Model
                 $this->products[$id]["name"],
                 $this->products[$id]["author"],
                 $this->products[$id]["price"],
-                $this->products[$id]["amount"]
+                $this->products[$id]["amount"],
+                $this->products[$id]["image"],
+                $this->products[$id]["description"]
             );
         }
         return $products;

@@ -15,6 +15,6 @@ class MainController
 
     public function main()
     {
-        $this->templeater->renderContent('main', 'main');
+        $this->templeater->renderContent('Главная', 'main');
     }
 }

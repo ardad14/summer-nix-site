@@ -8,4 +8,3 @@ use Framework\Router\Router;
 $router = new Router();
 $router->matchRoute();
 
-
