@@ -7,17 +7,23 @@ use Framework\Core\ProductStorage\Model;
 
 class BookModel extends Model
 {
+    public function mapBook(array $book): Book
+    {
+        return new Book(
+            $book["name"],
+            $book["author"],
+            $book["price"],
+            $book["amount"],
+            $book["image"],
+            $book["description"],
+            $book["slug"]
+        );
+    }
+
     public function getById(int $id): ?Book
     {
         if(!empty($this->products[$id])) {
-            return new Book(
-                $this->products[$id]["name"],
-                $this->products[$id]["author"],
-                $this->products[$id]["price"],
-                $this->products[$id]["amount"],
-                $this->products[$id]["image"],
-                $this->products[$id]["description"]
-            );
+            return $this->mapBook($this->products[$id]);
         }
         return null;
     }
@@ -26,15 +32,18 @@ class BookModel extends Model
     {
         $products = array();
         foreach($this->products as $id => $value) {
-            $products[] = new Book(
-                $this->products[$id]["name"],
-                $this->products[$id]["author"],
-                $this->products[$id]["price"],
-                $this->products[$id]["amount"],
-                $this->products[$id]["image"],
-                $this->products[$id]["description"]
-            );
+            $products[] = $this->mapBook($this->products[$id]);
         }
         return $products;
+    }
+
+    public function getBySlug(string $slug): ?Book
+    {
+        foreach($this->products as $id => $value) {
+            if($this->products[$id]["slug"] === $slug) {
+                return $this->mapBook($this->products[$id]);
+            }
+        }
+        return null;
     }
 }

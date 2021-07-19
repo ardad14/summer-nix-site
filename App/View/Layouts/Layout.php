@@ -30,6 +30,9 @@
                         <a class="nav-link active" aria-current="page" href="/">Главная</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link active" href="/catalog">Каталог</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link active" href="#">Популярное</a>
                     </li>
                     <li class="nav-item dropdown">

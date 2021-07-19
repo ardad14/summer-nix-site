@@ -10,8 +10,9 @@ class Book
     private $amount;
     private $image;
     private $description;
+    private $slug;
 
-    public function __construct($name, $author, $price, $amount, $image, $description)
+    public function __construct($name, $author, $price, $amount, $image, $description, $slug)
     {
         $this->name = $name;
         $this->author = $author;
@@ -19,6 +20,7 @@ class Book
         $this->amount = $amount;
         $this->image = $image;
         $this->description = $description;
+        $this->slug = $slug;
     }
 
     public function getName()
@@ -49,5 +51,10 @@ class Book
     public function getDescription()
     {
         return $this->description;
+    }
+
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }

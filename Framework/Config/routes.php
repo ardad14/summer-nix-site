@@ -13,5 +13,8 @@ return [
         'controller' => 'product',
         "action" => "product"
     ],
-
+    '^catalog$' => [
+        'controller' => 'product',
+        "action" => "catalog"
+    ],
 ];

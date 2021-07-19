@@ -20,8 +20,20 @@ class ProductController
     public function product()
     {
         $model = new BookModel();
-        $currentBook = $model->getById(2);
+        $currentBook = $model->getBySlug($_GET['slug']);
         $this->templeater->renderContent('Товар', 'product', ["book" => $currentBook]);
     }
+
+    public function catalog()
+    {
+        $model = new BookModel();
+        $allBooks = $model->getAll();
+        $this->templeater->renderContent(
+            'Каталог',
+            'catalog',
+            ['books' => $allBooks]
+        );
+    }
+
 
 }
