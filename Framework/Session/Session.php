@@ -4,16 +4,6 @@ namespace Framework\Session;
 
 class Session
 {
-    private static Session $instance;
-
-    public static function getInstance(): Session
-    {
-        if(self::$instance === null) {
-            self::$instance = new self();
-        }
-        return self::$instance;
-    }
-
     public function start(): bool
     {
         return session_start();

@@ -21,4 +21,17 @@ return [
         'controller' => 'authentication',
         "action" => "login"
     ],
+    '^profile$' => [
+        'controller' => 'authentication',
+        "action" => "profile"
+    ],
+    '^auth$' => [
+        'controller' => 'authentication',
+        "action" => "auth"
+    ],
+    '^logout$' => [
+        'controller' => 'authentication',
+        "action" => "logout"
+    ],
+
 ];

@@ -73,7 +73,13 @@ main .container {
   margin-bottom: 30px;
 }
 
-  .form__input input[type=text],.form__input input[type=password] {
+form input {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+ /* .form__input input[type=text],.form__input input[type=password] {
   width: 380px;
   height: 55px;
   font-size: 18px;
@@ -81,7 +87,7 @@ main .container {
   margin-bottom: 25px;
   border-radius: 5px;
   padding-left: 20px;
-}
+}*/
   .password:before {
     font-family: 'Abel', sans-serif;
   color: #000;
@@ -116,7 +122,9 @@ main .container {
 }
 
 .form-input {
-
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .sign-up {
@@ -151,38 +159,3 @@ main .container {
   margin-bottom: 50px;
   
 }
-
-/* footer */
-
-footer {
-  background-color: #141316;
-  padding: 30px 40px 10px 40px;
-}
-footer .footer_text {
-  font-family: "Alegreya", serif;
-  font-size: 24px;
-  color: #FFFFFF;
-  font-weight: 500;
-  letter-spacing: 1px;
-}
-footer .social {
-  display: flex;
-}
-footer .social_text {
-  font-family: "Montserrat", sans-serif;
-  font-size: 19px;
-  color: #fff;
-  white-space: nowrap;
-  position: relative;
-  top: 5px;
-}
-.social_links a {
-  margin-left: 10px;
-  color: #fff;
-  font-size: 24px;
-}
-footer .footer__info {
-  display: flex;
-  justify-content: space-between;
-}
-
