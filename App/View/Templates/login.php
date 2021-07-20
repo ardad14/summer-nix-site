@@ -4,7 +4,7 @@
             <p>Войти</p>
             <div class="login_item row">
                 <div class="img col-md-3">
-                    <img src="../../../public/image/user.png">
+                    <img src="image/user.png">
                 </div>
                  <div class="overlay col-md-4">
                     <form>

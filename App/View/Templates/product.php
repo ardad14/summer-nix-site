@@ -3,11 +3,11 @@
         <p class="product-path">Книги / Научная фантастика / Аркадий и Борис Стругацкие / Понедельник начинается в субботу</p>
         <div class="row mt-5">
             <div class="col-md-5">
-                <img class="product-img" src="../../../public/image/monday.jpg" alt="">
+                <img class="product-img" <?php echo "src=image/" . $vars["book"]->getImage() ?> alt="">
             </div>
             <div class="col-md-7 product-text">
-                <h6 class="display-6 fw-normal">Понедельник начинается в субботу</h6>
-                <p class="lead fw-normal mt-3">Автор: Аркадий и Борис Стругацкие</p>
+                <h6 class="display-6 fw-normal"><?php echo $vars["book"]->getName()?></h6>
+                <p class="lead fw-normal mt-3">Автор: <?php echo $vars["book"]->getAuthor()?></p>
                 <div class="row mt-5">
                     <div class="col-md-3">
                         <a class="btn btn-light border border-dark" href="#">Читать фрагмент</a>
@@ -17,7 +17,7 @@
                     </div>
                 </div>
                 <div class="col-md-3 mt-5">
-                    <a class="btn btn-success" href="#">Купить и скачать за 60₴</a>
+                    <a class="btn btn-success" href="#">Купить и скачать за <?php echo $vars["book"]->getPrice()?>₴</a>
                 </div>
                 <div class="row mt-4">
                     <div class="col-md-2">
@@ -50,7 +50,7 @@
         <div class="about">
             <div class="info col-md-6 mt-5">
             <h6 class="display-6 fw-normal">Описание</h6>
-            <p class="lead fw-normal mt-3">Программист Александр Привалов отправляется в путешествие. В пути, неподалеку от Соловца, он встречает двух сотрудников местного вуза со странным названием НИИЧАВО. А затем соглашается переночевать в институтском музее Изнакурнож на улице Лукоморье и практически попадает в сказочную реальность…</p>
+            <p class="lead fw-normal mt-3"><?php echo $vars["book"]->getDescription()?></p>
             </div>
     </div>
 </main>

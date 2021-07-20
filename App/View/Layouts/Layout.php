@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basket</title>
+    <title><?php echo $title?></title>
     <link rel="stylesheet" href="css/main-page.css">
-    <link rel="stylesheet" href="/public/css/product-page.css">
-    <link rel="stylesheet" href="../../../public/css/catalog.css">
-    <link rel="stylesheet" href="../../../public/css/login.css">
-    <link rel="stylesheet" href="../../../public/css/basket.css">
+    <link rel="stylesheet" href="css/product-page.css">
+    <link rel="stylesheet" href="css/catalog.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/basket.css">
     <script src="https://kit.fontawesome.com/7c16640ea8.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,7 +19,7 @@
 <header>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="Fourth navbar example">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Booker</a>
+            <a class="navbar-brand" href="/">Booker</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -27,7 +27,10 @@
             <div class="collapse navbar-collapse" id="navbarsExample04">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Главная</a>
+                        <a class="nav-link active" aria-current="page" href="/">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/catalog">Каталог</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="#">Популярное</a>

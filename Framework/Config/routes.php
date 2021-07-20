@@ -9,5 +9,12 @@ return [
         'controller' => 'main',
         "action" => "main"
     ],
-
+    '^product$' => [
+        'controller' => 'product',
+        "action" => "product"
+    ],
+    '^catalog$' => [
+        'controller' => 'product',
+        "action" => "catalog"
+    ],
 ];

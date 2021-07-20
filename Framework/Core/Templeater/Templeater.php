@@ -4,11 +4,11 @@ namespace Framework\Core\Templeater;
 
 class Templeater
 {
-    public function renderContent($controller, $view, $vars = [])
+    public function renderContent($title, $view, $vars = [])
     {
         ob_start();
-        require "../App/View/Templates/"  . $view . ".php";
+        require_once "../App/View/Templates/"  . $view . ".php";
         $content = ob_get_clean();
-        require "../App/View/Layouts/Layout.php";
+        require_once "../App/View/Layouts/Layout.php";
     }
 }
