@@ -17,4 +17,8 @@ return [
         'controller' => 'product',
         "action" => "catalog"
     ],
+    '^login$' => [
+        'controller' => 'authentication',
+        "action" => "login"
+    ],
 ];

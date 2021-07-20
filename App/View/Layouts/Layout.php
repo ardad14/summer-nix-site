@@ -47,6 +47,11 @@
                         <a class="nav-link active" href="#" tabindex="-1">О нас</a>
                     </li>
                 </ul>
+                <a class="col-md-2" href="/login">
+                    <button class="btn btn-outline-light my-2 my-sm-0">
+                        Войти
+                    </button>
+                </a>
                 <form>
                     <input class="form-control" type="text" placeholder="Search" aria-label="Search">
                 </form>

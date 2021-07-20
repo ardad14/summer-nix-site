@@ -2,17 +2,10 @@
 
 namespace App\Controller;
 
-use Framework\Core\Templeater\Templeater;
+use Framework\Core\AbstractController\Controller;
 
-class MainController
+class MainController extends Controller
 {
-    private Templeater $templeater;
-
-    public function __construct()
-    {
-        $this->templeater = new Templeater();
-    }
-
     public function main()
     {
         $this->templeater->renderContent('Главная', 'main');
