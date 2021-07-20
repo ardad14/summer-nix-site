@@ -47,6 +47,24 @@
                         <a class="nav-link active" href="#" tabindex="-1">О нас</a>
                     </li>
                 </ul>
+                <?php if(isset($_SESSION['userName'])): ?>
+                    <p class="col-md-2 text-white" href="/profile">
+
+                        <?php echo $_SESSION['userName'] ?>
+
+                    </p>
+                    <a class="col-md-2" href="/logout">
+                        <button class="btn btn-outline-light my-2 my-sm-0">
+                            Logout
+                        </button>
+                    </a>
+                <?php else: ?>
+                <a class="col-md-2" href="/login">
+                    <button class="btn btn-outline-light my-2 my-sm-0">
+                        Войти
+                    </button>
+                </a>
+                <?php endif; ?>
                 <form>
                     <input class="form-control" type="text" placeholder="Search" aria-label="Search">
                 </form>
@@ -57,7 +75,7 @@
 <body>
     <?php echo $content ?>
 </body>
-<footer class="footer">
+<footer class="footer fixed">
     <div class="footer__info">
         <div class="footer_links">
             <div class="social">
