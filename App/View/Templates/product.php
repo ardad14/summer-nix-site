@@ -1,6 +1,6 @@
 <main>
     <div class="content-container">
-        <p class="product-path">Книги / Научная фантастика / Аркадий и Борис Стругацкие / Понедельник начинается в субботу</p>
+        <p class="product-path"><?php echo "Книги / " . $vars["book"]->getGenre() . " / " . $vars["book"]->getAuthor() . " / " . $vars["book"]->getName()?>
         <div class="row mt-5">
             <div class="col-md-5">
                 <img class="product-img" <?php echo "src=image/" . $vars["book"]->getImage() ?> alt="">
@@ -48,9 +48,9 @@
             </div>
         </div>
         <div class="about">
-            <div class="info col-md-6 mt-5">
-            <h6 class="display-6 fw-normal">Описание</h6>
-            <p class="lead fw-normal mt-3"><?php echo $vars["book"]->getDescription()?></p>
+            <div class="info col-md-10 mt-5">
+                <h6 class="display-6 fw-normal text-center">Описание</h6>
+                <p class="lead fw-normal mt-3"><?php echo $vars["book"]->getDescription()?></p>
             </div>
     </div>
 </main>

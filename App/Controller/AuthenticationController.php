@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use Framework\Core\AbstractController\Controller;
-use Framework\Core\Authentication\Authentication;
+use Framework\Authentication\Authentication;
 
 class AuthenticationController extends Controller
 {
