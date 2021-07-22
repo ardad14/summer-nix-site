@@ -23,7 +23,6 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
             <div class="collapse navbar-collapse" id="navbarsExample04">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
                     <li class="nav-item">
@@ -49,9 +48,7 @@
                 </ul>
                 <?php if(isset($_SESSION['userName'])): ?>
                     <p class="col-md-2 text-white" href="/profile">
-
                         <?php echo $_SESSION['userName'] ?>
-
                     </p>
                     <a class="col-md-2" href="/logout">
                         <button class="btn btn-outline-light my-2 my-sm-0">
@@ -75,7 +72,7 @@
 <body>
     <?php echo $content ?>
 </body>
-<footer class="footer fixed">
+<footer class="footer">
     <div class="footer__info">
         <div class="footer_links">
             <div class="social">

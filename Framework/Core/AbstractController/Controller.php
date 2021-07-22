@@ -2,7 +2,7 @@
 
 namespace Framework\Core\AbstractController;
 
-use Framework\Core\Templeater\Templeater;
+use Framework\Templeater\Templeater;
 
 abstract class Controller
 {

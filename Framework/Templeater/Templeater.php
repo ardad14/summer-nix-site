@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Core\Templeater;
+namespace Framework\Templeater;
 
 class Templeater
 {

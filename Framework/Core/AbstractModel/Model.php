@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Core\ProductStorage;
+namespace Framework\Core\AbstractModel;
 
 class Model
 {

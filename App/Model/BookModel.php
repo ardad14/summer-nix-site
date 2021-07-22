@@ -3,7 +3,7 @@
 namespace App\Model;
 
 use App\Entity\Book;
-use Framework\Core\ProductStorage\Model;
+use Framework\Core\AbstractModel\Model;
 
 class BookModel extends Model
 {
@@ -16,7 +16,8 @@ class BookModel extends Model
             $book["amount"],
             $book["image"],
             $book["description"],
-            $book["slug"]
+            $book["slug"],
+            $book["genre"]
         );
     }
 
