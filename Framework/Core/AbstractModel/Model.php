@@ -2,13 +2,16 @@
 
 namespace Framework\Core\AbstractModel;
 
+use PDO;
+use Framework\Database\Db;
+
 class Model
 {
-    protected array $products;
+    protected PDO $dbConnect;
 
     public function __construct()
     {
-        $this->products = require_once "../Framework/Core/ProductStorage/books.php";
+        $this->dbConnect = DB::getInstance()->connect();
     }
 }
 
