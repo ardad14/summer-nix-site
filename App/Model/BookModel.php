@@ -2,49 +2,27 @@
 
 namespace App\Model;
 
-use App\Entity\Book;
 use Framework\Core\AbstractModel\Model;
 
 class BookModel extends Model
 {
-    public function mapBook(array $book): Book
+    public function getById(int $id): ?array
     {
-        return new Book(
-            $book["name"],
-            $book["author"],
-            $book["price"],
-            $book["amount"],
-            $book["image"],
-            $book["description"],
-            $book["slug"],
-            $book["genre"]
-        );
+        $query = $this->dbConnect->prepare('SELECT * FROM `books` WHERE id = ?');
+        $query->execute([$id]);
+        return $query->fetchAll();
     }
 
-    public function getById(int $id): ?Book
+    public function getAll(): ?array
     {
-        if(!empty($this->products[$id])) {
-            return $this->mapBook($this->products[$id]);
-        }
-        return null;
+        $query = $this->dbConnect->query('SELECT * FROM `books`');
+        return $query->fetchAll();
     }
 
-    public function getAll(): array
+    public function getBySlug(string $slug): ?array
     {
-        $products = array();
-        foreach($this->products as $id => $value) {
-            $products[] = $this->mapBook($this->products[$id]);
-        }
-        return $products;
-    }
-
-    public function getBySlug(string $slug): ?Book
-    {
-        foreach($this->products as $id => $value) {
-            if($this->products[$id]["slug"] === $slug) {
-                return $this->mapBook($this->products[$id]);
-            }
-        }
-        return null;
+        $query = $this->dbConnect->prepare('SELECT * FROM `books` WHERE slug = ?');
+        $query->execute([$slug]);
+        return $query->fetchAll();
     }
 }
