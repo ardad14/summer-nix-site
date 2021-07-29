@@ -14,13 +14,15 @@ class AuthenticationController extends Controller
 
     public function profile()
     {
+        if (empty($_SESSION['userName'])) {
+            header("location: ../login");
+        }
         $this->templeater->renderContent('Профиль', 'profile');
     }
 
     public function auth()
     {
-        $auth = new Authentication();
-        if($auth->auth($_POST["login"], $_POST["password"])) {
+        if($this->authentication->auth($_POST["login"], $_POST["password"])) {
             unset($_SESSION['wrongCredentials']);
             header("location: ../profile");
         } else {
@@ -34,8 +36,8 @@ class AuthenticationController extends Controller
 
     public function logout()
     {
-        $auth = new Authentication();
-        $auth->logOut();
+        $this->authentication = new Authentication();
+        $this->authentication->logOut();
         header("location: ../login");
     }
 }
