@@ -1,13 +1,13 @@
 <main>
     <div class="content-container">
-        <p class="product-path"><?php echo "Книги / " . $vars["book"]->getGenre() . " / " . $vars["book"]->getAuthor() . " / " . $vars["book"]->getName()?>
+        <p class="product-path"><?php echo "Книги / " . $vars["book"][0]->getGenre() . " / " . $vars["book"][0]->getAuthor() . " / " . $vars["book"][0]->getName()?>
         <div class="row mt-5">
             <div class="col-md-5">
-                <img class="product-img" <?php echo "src=image/" . $vars["book"]->getImage() ?> alt="">
+                <img class="product-img" <?php echo "src=image/" . $vars["book"][0]->getImage() ?> alt="">
             </div>
             <div class="col-md-7 product-text">
-                <h6 class="display-6 fw-normal"><?php echo $vars["book"]->getName()?></h6>
-                <p class="lead fw-normal mt-3">Автор: <?php echo $vars["book"]->getAuthor()?></p>
+                <h6 class="display-6 fw-normal"><?php echo $vars["book"][0]->getName()?></h6>
+                <p class="lead fw-normal mt-3">Автор: <?php echo $vars["book"][0]->getAuthor()?></p>
                 <div class="row mt-5">
                     <div class="col-md-3">
                         <a class="btn btn-light border border-dark" href="#">Читать фрагмент</a>
@@ -17,7 +17,7 @@
                     </div>
                 </div>
                 <div class="col-md-3 mt-5">
-                    <a class="btn btn-success" href="#">Купить и скачать за <?php echo $vars["book"]->getPrice()?>₴</a>
+                    <a class="btn btn-success" href="#">Купить и скачать за <?php echo $vars["book"][0]->getPrice()?>₴</a>
                 </div>
                 <div class="row mt-4">
                     <div class="col-md-2">
@@ -50,7 +50,7 @@
         <div class="about">
             <div class="info col-md-10 mt-5">
                 <h6 class="display-6 fw-normal text-center">Описание</h6>
-                <p class="lead fw-normal mt-3"><?php echo $vars["book"]->getDescription()?></p>
+                <p class="lead fw-normal mt-3"><?php echo $vars["book"][0]->getDescription()?></p>
             </div>
     </div>
 </main>
