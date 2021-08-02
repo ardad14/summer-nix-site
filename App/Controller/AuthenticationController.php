@@ -14,22 +14,18 @@ class AuthenticationController extends Controller
 
     public function profile()
     {
-        if (empty($_SESSION['userName'])) {
+        if (!$this->authentication->isAuth()) {
             header("location: ../login");
         }
-        $this->templeater->renderContent('Профиль', 'profile');
+        $this->templeater->renderContent('Профиль', 'profile', ["name" => $this->authentication->session->getKey("userName")] );
+
     }
 
     public function auth()
     {
-        if($this->authentication->auth($_POST["login"], $_POST["password"])) {
-            unset($_SESSION['wrongCredentials']);
+        if ($this->authentication->auth($_POST["login"], $_POST["password"])) {
             header("location: ../profile");
         } else {
-            $_SESSION['wrongCredentials'] = '
-                <div class="alert alert-danger" role="alert">
-                    <b>Wrong credentials! </b>
-                </div>';
             header("location: ../login");
         }
     }
