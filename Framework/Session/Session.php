@@ -4,29 +4,56 @@ namespace Framework\Session;
 
 class Session
 {
+    private static $instance;
+
+    public static function getInstance()
+    {
+        if (self::$instance === null) {
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
+
     public function start(): bool
     {
+        if($this->sessionExists()) {
+            return false;
+        }
         return session_start();
     }
 
-    public function getName(): string
+    public function getName(): ?string
     {
-        return session_name();
+        if($this->sessionExists()) {
+            return session_name();
+        }
+        return null;
     }
 
-    public function setName($name): void
+    public function setName($name): bool
     {
-        session_name($name);
+        if($this->sessionExists()) {
+            session_name($name);
+            return true;
+        }
+        return false;
     }
 
-    public function getId(): string
+    public function getId(): ?string
     {
-        return session_id();
+        if($this->sessionExists()) {
+            return session_id();
+        }
+        return null;
     }
 
-    public function setId($id): void
+    public function setId($id): bool
     {
-        session_id($id);
+        if($this->sessionExists()) {
+            session_id($id);
+            return true;
+        }
+        return false;
     }
 
     public function cookieExists(): bool
@@ -41,30 +68,40 @@ class Session
 
     public function destroy(): bool
     {
-        return session_destroy();
+        if($this->sessionExists()) {
+            return session_destroy();
+        }
+        return false;
     }
 
-    public function setSavePath($savePath): void
+    public function setSavePath($savePath): bool
     {
-        session_save_path($savePath);
+        if($this->sessionExists()) {
+            session_save_path($savePath);
+            return true;
+        }
+        return false;
     }
 
-    public function set($key, $value): void
+    public function setKey($key, $value)
     {
         $_SESSION[$key] = $value;
     }
 
-    public function get($key)
+    public function getKey($key)
     {
-        return $_SESSION[$key];
+        if($this->sessionExists()) {
+            return $_SESSION[$key];
+        }
+        return null;
     }
 
-    public function contains($key): bool
+    public function containsKey($key): bool
     {
         return isset($_SESSION[$key]);
     }
 
-    public function delete($key): void
+    public function deleteKey($key)
     {
         unset($_SESSION[$key]);
     }
