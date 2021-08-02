@@ -13,5 +13,6 @@ abstract class Controller
     public function __construct()
     {
         $this->templeater = new Templeater();
+        $this->authentication = new Authentication();
     }
 }
