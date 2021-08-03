@@ -25,4 +25,11 @@ class BookModel extends Model
         $query->execute([$slug]);
         return $query->fetchAll();
     }
+
+    public function getAmountInRange(int $from, int $amount): ?array
+    {
+        $query = $this->dbConnect->prepare('SELECT * FROM `books` WHERE id > :from AND id <= :end');
+        $query->execute([":from" => $from, ":end" => $from + $amount]);
+        return $query->fetchAll();
+    }
 }
