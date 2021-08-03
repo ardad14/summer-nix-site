@@ -19,7 +19,15 @@
                 </form>
                 <?php endforeach; ?>
             </div>
-            <button class="button">Покажите еще   <i class="fas fa-angle-double-right"></i></button>
+            <div class="pagination">
+                <ul class="list-inline list-group list-group-horizontal">
+                    <?php foreach($vars['pagination'] as $item):?>
+                        <form action="/catalog" method="GET">
+                            <li class="list-group-item <?php if($vars['currentPage'] == $item) echo "bg-secondary";?>"><button class="<?php if($vars['currentPage'] == $item) echo "bg-secondary text-white"; else echo "bg-white";?>" name="page" type="submit" value="<?php echo $item ?>"><?php echo $item ?></button></li>
+                        </form>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
         </div>
     </div>
 </main>
