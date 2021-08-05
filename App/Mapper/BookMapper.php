@@ -2,7 +2,6 @@
 
 namespace App\Mapper;
 
-use App\Model\BookModel;
 use App\Entity\Book;
 
 class BookMapper

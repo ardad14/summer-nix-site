@@ -3,11 +3,11 @@
 namespace Framework\Authentication;
 
 use Framework\Session\Session;
+use App\Service\UserService;
 
 class Authentication
 {
-    private const LOGIN = "admin";
-    private const PASSWORD = "123";
+    private $login;
     public Session $session;
 
     public function __construct()
@@ -22,7 +22,9 @@ class Authentication
 
     public function auth($login, $pass) : bool
     {
-        if($login === self::LOGIN && $pass === self::PASSWORD) {
+        $userService = new UserService();
+        $user = $userService->getByLogin($login);
+        if($user != null && $pass === $user[0]->getPassword()) {
             $this->session->setKey("userName", $login);
             $this->session->deleteKey("wrongCredentials");
             return true;
@@ -37,7 +39,7 @@ class Authentication
 
     public function getLogin(): ?string
     {
-        return self::LOGIN;
+        return $this->login;
     }
 
     public function logOut() : void
