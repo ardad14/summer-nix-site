@@ -16,6 +16,11 @@ class BookService
         $this->bookMapper = new BookMapper();
     }
 
+    public function getById($id): array
+    {
+        return $this->bookMapper->mapBook($this->bookModel->getById($id));
+    }
+
     public function getAll(): array
     {
         return $this->bookMapper->mapBook($this->bookModel->getAll());
