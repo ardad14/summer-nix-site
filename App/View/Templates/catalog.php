@@ -24,7 +24,7 @@
                     <?php foreach($vars['pagination'] as $item):?>
                         <form action="/catalog" method="GET">
                             <li class="list-group-item <?php if($vars['currentPage'] == $item) echo "bg-secondary";?>"><button class="<?php if($vars['currentPage'] == $item) echo "bg-secondary text-white"; else echo "bg-white";?>" name="page" type="submit" value="<?php echo $item ?>"><?php echo $item ?></button></li>
-                        </form>
+                        </form>`
                     <?php endforeach; ?>
                 </ul>
             </div>

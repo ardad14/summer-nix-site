@@ -28,9 +28,11 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/">Главная</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/catalog">Каталог</a>
-                    </li>
+                    <form action="/catalog" method="GET">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#"><button name="page" type="submit" class="bg-dark text-white" value="1">Каталог</button></a>
+                        </li>
+                    </form>
                     <li class="nav-item">
                         <a class="nav-link active" href="#">Популярное</a>
                     </li>

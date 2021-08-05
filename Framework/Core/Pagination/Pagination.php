@@ -20,7 +20,8 @@ class Pagination
         $this->pageAmount = $this->totalCount / self::BOOKAMOUNT;
     }
 
-    public static function getBookAmount():int {
+    public static function getBookAmount(): int
+    {
         return self::BOOKAMOUNT;
     }
 
@@ -33,7 +34,25 @@ class Pagination
         return $arr;
     }
 
+    public function getCurrentPage(): int
+    {
+        if(!isset($_GET['page'])) {
+            $_GET['page'] = 1;
+            $currentPage = 1;
+        } else {
+            $currentPage = ($this->getBookFromSelect() + self::BOOKAMOUNT) / self::BOOKAMOUNT;
+        }
+        return $currentPage;
+    }
 
-
+    public function getBookFromSelect(): int
+    {
+        if(!isset($_GET['page'])) {
+            $bookFrom = 1;
+        } else {
+            $bookFrom = $_GET['page']  *  self::BOOKAMOUNT -  self::BOOKAMOUNT;
+        }
+        return $bookFrom;
+    }
 
 }

@@ -21,20 +21,13 @@ class ProductController extends Controller
 
     public function catalog()
     {
-        $bookAmount = Pagination::getBookAmount();  
-        if(!isset($_GET['page'])) {
-            $pageFrom = 1;
-        } else {
-            $pageFrom = $_GET['page']  *  $bookAmount -  $bookAmount;
-        }
-        $currentPage = ($pageFrom + $bookAmount) / $bookAmount;
         $pagination = new Pagination();
         $service = new BookService();
-        $allBooks = $service->getAmountInRange($pageFrom,  $bookAmount);
+        $allBooks = $service->getAmountInRange($pagination->getBookFromSelect(),  $pagination::getBookAmount());
         $this->templeater->renderContent(
             'Каталог',
             'catalog',
-            ['books' => $allBooks, 'pagination' => $pagination->getPageAmount(), 'currentPage' => $currentPage]
+            ['books' => $allBooks, 'pagination' => $pagination->getPageAmount(), 'currentPage' => $pagination->getCurrentPage()]
         );
     }
 
