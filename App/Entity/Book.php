@@ -4,6 +4,7 @@ namespace App\Entity;
 
 class Book
 {
+    private $id;
     private $title;
     private $author;
     private $price;
@@ -13,8 +14,9 @@ class Book
     private $slug;
     private $genre;
 
-    public function __construct($title, $author, $price, $amount, $image, $description, $slug, $genre)
+    public function __construct($id, $title, $author, $price, $amount, $image, $description, $slug, $genre)
     {
+        $this->id = $id;
         $this->title = $title;
         $this->author = $author;
         $this->price = $price;
@@ -25,7 +27,13 @@ class Book
         $this->genre = $genre;
     }
 
-    public function getName()
+    public function getId()
+    {
+        return $this->id;
+    }
+
+
+    public function getTitle()
     {
         return $this->title;
     }
