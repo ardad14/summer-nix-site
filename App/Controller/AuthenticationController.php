@@ -17,8 +17,11 @@ class AuthenticationController extends Controller
         if (!$this->authentication->isAuth()) {
             header("location: ../login");
         }
-        $this->templeater->renderContent('Профиль', 'profile', ["name" => $this->authentication->session->getKey("userName")] );
-
+        $this->templeater->renderContent(
+            'Профиль',
+            'profile',
+            ["name" => $this->authentication->session->getKey("userName")]
+        );
     }
 
     public function auth()
