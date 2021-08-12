@@ -11,6 +11,7 @@ class UserMapper
         $users = [];
         foreach($dbData as $line) {
             $users[] = new User(
+                $line['id'],
                 $line["name"],
                 $line["surname"],
                 $line["age"],

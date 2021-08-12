@@ -4,6 +4,7 @@ namespace App\Entity;
 
 class User
 {
+    private $id;
     private $name;
     private $surname;
     private $age;
@@ -12,8 +13,9 @@ class User
     private $login;
     private $password;
 
-    public function __construct($name, $surname, $age, $phone, $email, $login, $password)
+    public function __construct($id, $name, $surname, $age, $phone, $email, $login, $password)
     {
+        $this->id = $id;
         $this->name = $name;
         $this->surname = $surname;
         $this->age = $age;
@@ -21,6 +23,11 @@ class User
         $this->email = $email;
         $this->login = $login;
         $this->password = $password;
+    }
+
+    public function getId()
+    {
+        return $this->id;
     }
 
     public function getName()
