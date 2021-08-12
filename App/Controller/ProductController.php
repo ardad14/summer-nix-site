@@ -23,13 +23,15 @@ class ProductController extends Controller
     {
         $pagination = new Pagination();
         $service = new BookService();
-        $allBooks = $service->getAmountInRange($pagination->getBookFromSelect(),  $pagination::getBookAmount());
+        $allBooks = $service->getAmountInRange($pagination->getBookFromSelect(), $pagination::getBookAmount());
         $this->templeater->renderContent(
             'Каталог',
             'catalog',
-            ['books' => $allBooks, 'pagination' => $pagination->getPageAmount(), 'currentPage' => $pagination->getCurrentPage()]
+            [
+                'books' => $allBooks,
+                'pagination' => $pagination->getPageAmount(),
+                'currentPage' => $pagination->getCurrentPage()
+            ]
         );
     }
-
-
 }

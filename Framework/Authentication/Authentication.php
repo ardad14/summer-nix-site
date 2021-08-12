@@ -7,7 +7,6 @@ use App\Service\UserService;
 
 class Authentication
 {
-    private $login;
     public Session $session;
 
     public function __construct()
