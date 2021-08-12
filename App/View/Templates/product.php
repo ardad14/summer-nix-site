@@ -1,12 +1,12 @@
 <main>
     <div class="content-container">
-        <p class="product-path"><?php echo "Книги / " . $vars["book"][0]->getGenre() . " / " . $vars["book"][0]->getAuthor() . " / " . $vars["book"][0]->getName()?>
+        <p class="product-path"><?php echo "Книги / " . $vars["book"][0]->getGenre() . " / " . $vars["book"][0]->getAuthor() . " / " . $vars["book"][0]->getTitle()?>
         <div class="row mt-5">
             <div class="col-md-5">
                 <img class="product-img" <?php echo "src=image/" . $vars["book"][0]->getImage() ?> alt="">
             </div>
             <div class="col-md-7 product-text">
-                <h6 class="display-6 fw-normal"><?php echo $vars["book"][0]->getName()?></h6>
+                <h6 class="display-6 fw-normal"><?php echo $vars["book"][0]->getTitle()?></h6>
                 <p class="lead fw-normal mt-3">Автор: <?php echo $vars["book"][0]->getAuthor()?></p>
                 <div class="row mt-5">
                     <div class="col-md-3">
@@ -17,7 +17,11 @@
                     </div>
                 </div>
                 <div class="col-md-3 mt-5">
-                    <a class="btn btn-success" href="#">Купить и скачать за <?php echo $vars["book"][0]->getPrice()?>₴</a>
+                    <form action="/basket/add" method="POST">
+                        <button name="slug" class="btn btn-success" type="submit" value="<?php echo $vars["book"][0]->getSlug() ?>">
+                            Купить и скачать за <?php echo $vars["book"][0]->getPrice()?>₴
+                        </button>
+                    </form>
                 </div>
                 <div class="row mt-4">
                     <div class="col-md-2">

@@ -11,6 +11,7 @@ class BookMapper
         $books = [];
         foreach($dbData as $line) {
             $books[] = new Book(
+                $line["id"],
                 $line["title"],
                 $line["author"],
                 $line["price"],

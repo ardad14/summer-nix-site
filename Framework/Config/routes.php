@@ -33,5 +33,16 @@ return [
         'controller' => 'authentication',
         "action" => "logout"
     ],
-
+    '^basket$' => [
+        'controller' => 'basket',
+        "action" => "basket"
+    ],
+    '^basket/delete$' => [
+        'controller' => 'basket',
+        "action" => "deleteBook"
+    ],
+    '^basket/add$' => [
+        'controller' => 'basket',
+        "action" => "addBook"
+    ],
 ];

@@ -90,7 +90,7 @@ class Session
 
     public function getKey($key)
     {
-        if($this->sessionExists()) {
+        if($this->sessionExists() && $this->containsKey($key)) {
             return $_SESSION[$key];
         }
         return null;

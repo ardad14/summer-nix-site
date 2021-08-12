@@ -26,9 +26,29 @@ class UserService
         return $this->userMapper->mapUser($this->userModel->getAll());
     }
 
-    public function getByLogin($login): array
+    public function getBy($key, $value): array
     {
-        return $this->userMapper->mapUser($this->userModel->getByLogin($login));
+        return $this->userMapper->mapUser($this->userModel->getBy($key, $value));
+    }
+
+    public function getByLogin($value): array
+    {
+        return $this->userMapper->mapUser($this->userModel->getByLogin($value));
+    }
+
+    public function setNewBook(int $userId, int $bookId): void
+    {
+        $this->userModel->setNewBook($userId, $bookId);
+    }
+
+    public function deleteBook(int $userId, int $bookId): void
+    {
+        $this->userModel->deleteBook($userId, $bookId);
+    }
+
+    public function getAllBooks(int $userId): array
+    {
+        return $this->userModel->getAllBooks($userId);
     }
 
 }
