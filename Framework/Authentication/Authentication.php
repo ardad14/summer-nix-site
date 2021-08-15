@@ -4,14 +4,17 @@ namespace Framework\Authentication;
 
 use Framework\Session\Session;
 use App\Service\UserService;
+use Framework\Core\Validator\Validator;
 
 class Authentication
 {
     public Session $session;
+    private Validator $validator;
 
     public function __construct()
     {
         $this->session = Session::getInstance();
+        $this->validator = new Validator();
     }
 
     public function isAuth(): bool
@@ -29,12 +32,7 @@ class Authentication
             return true;
         }
 
-        $this->session->setKey(
-            "wrongCredentials",
-            '<div class="alert alert-danger" role="alert">
-                <b>Wrong credentials! </b>
-            </div>'
-        );
+        $this->validator->setLoginError();
         return false;
     }
 

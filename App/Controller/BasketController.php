@@ -18,7 +18,6 @@ class BasketController extends Controller
     public function basket(): void
     {
         $books = $this->authentication->session->getKey('books');
-        var_dump($books);
         $this->templeater->renderContent(
             'Корзина',
             'basket',
