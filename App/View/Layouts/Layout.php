@@ -58,10 +58,13 @@
                         </button>
                     </a>
                 <?php else: ?>
-                <a class="col-md-2" href="/login">
+                <a class="col-md-1" href="/login">
                     <button class="btn btn-outline-light my-2 my-sm-0">
                         Войти
                     </button>
+                </a>
+                <a class="col-md-2 nav-link active text-white" href="/registration">
+                    Регистрация
                 </a>
                 <?php endif; ?>
                 <form>

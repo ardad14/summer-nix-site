@@ -29,6 +29,14 @@ return [
         'controller' => 'authentication',
         "action" => "auth"
     ],
+    '^registration$' => [
+        'controller' => 'registration',
+        "action" => "registration"
+    ],
+    '^verification$' => [
+        'controller' => 'registration',
+        "action" => "verification"
+    ],
     '^logout$' => [
         'controller' => 'authentication',
         "action" => "logout"
