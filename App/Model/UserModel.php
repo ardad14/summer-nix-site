@@ -8,21 +8,6 @@ use App\Service\BookService;
 
 class UserModel extends Model
 {
-    public function getBy(string $key, $value): ?array
-    {
-        try {
-            $query = $this->dbConnect->prepare('
-                SELECT * 
-                FROM `users`
-                WHERE :key = "ardad12"
-            ');
-            $query->execute([':key' => $key, ':value' => $value]);
-            return $query->fetchAll();
-        } catch (PDOException $e) {
-            throw new $e();
-        }
-    }
-
     public function getByLogin($value): ?array
     {
         try {
@@ -38,21 +23,6 @@ class UserModel extends Model
         }
     }
 
-    public function getOneBy(string $key, $value): ?array
-    {
-        try {
-            $query = $this->dbConnect->prepare('
-                SELECT 1 
-                FROM `users`
-                WHERE :key = :value
-            ');
-            $query->execute([':key' => $key, ':value' => $value]);
-            return $query->fetchAll();
-        } catch (PDOException $e) {
-            throw new $e();
-        }
-    }
-
     public function getAll(): ?array
     {
         try {
@@ -61,6 +31,35 @@ class UserModel extends Model
                 FROM `users`
             ');
             return $query->fetchAll();
+        } catch (PDOException $e) {
+            throw new $e();
+        }
+    }
+
+    public function setNewUser(
+        string $name,
+        string $surname,
+        string $email,
+        string $phone,
+        string $login,
+        string $password
+    ): void {
+        try {
+            $query = $this->dbConnect->prepare('
+                INSERT 
+                INTO `users`
+                (name, surname, email, phone, login, password) 
+                VALUES (:name, :surname, :email, :phone, :login, :password) 
+            ');
+
+            $query->execute([
+                ':name' => $name,
+                ':surname' => $surname,
+                ':email' => $email,
+                ':phone' => $phone,
+                ':login' => $login,
+                ':password' => $password
+            ]);
         } catch (PDOException $e) {
             throw new $e();
         }

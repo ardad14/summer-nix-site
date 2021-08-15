@@ -15,12 +15,12 @@ class UserService
         $this->userModel = new userModel();
         $this->userMapper = new userMapper();
     }
-
+    /*
     public function getById($id): array
     {
         return $this->userMapper->mapUser($this->userModel->getById($id));
     }
-
+    */
     public function getAll(): array
     {
         return $this->userMapper->mapUser($this->userModel->getAll());
@@ -34,6 +34,24 @@ class UserService
     public function getByLogin($value): array
     {
         return $this->userMapper->mapUser($this->userModel->getByLogin($value));
+    }
+
+    public function setNewUser(
+        string $name,
+        string $surname,
+        string $email,
+        string $phone,
+        string $login,
+        string $password
+    ): void {
+        $this->userModel->setNewUser(
+            $name,
+            $surname,
+            $email,
+            $phone,
+            $login,
+            $password
+        );
     }
 
     public function setNewBook(int $userId, int $bookId): void
@@ -50,5 +68,4 @@ class UserService
     {
         return $this->userModel->getAllBooks($userId);
     }
-
 }
