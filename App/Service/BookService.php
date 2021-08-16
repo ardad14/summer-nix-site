@@ -31,6 +31,11 @@ class BookService
         return $this->bookMapper->mapBook($this->bookModel->getBySlug($slug));
     }
 
+    public function getByTitle($title): array
+    {
+        return $this->bookMapper->mapBook($this->bookModel->getByTitle($title));
+    }
+
     public function getAmountInRange($from, $amount): array
     {
         return $this->bookMapper->mapBook($this->bookModel->getAmountInRange($from, $amount));
