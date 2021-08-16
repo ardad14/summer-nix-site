@@ -53,4 +53,12 @@ return [
         'controller' => 'basket',
         "action" => "addBook"
     ],
+    '^search$' => [
+        'controller' => 'product',
+        "action" => "search"
+    ],
+    '^unsetMessage$' => [
+        'controller' => 'product',
+        "action" => "unsetError"
+    ],
 ];
