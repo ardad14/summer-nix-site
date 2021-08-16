@@ -9,7 +9,6 @@
                             <img class="photo" src="image/<?php echo $book->getImage() ?>" alt="">
                             <h2><?php echo $book->getAuthor() ?></h2>
                             <h1><?php echo $book->getTitle() ?></h1>
-<!--                            <h3></h3>-->
                             <button name="slug" type="submit" class="btn btn-dark text-center" value="<?php echo $book->getSlug() ?>">
                                 Купить за <?php echo $book->getPrice() . " грн" ?>
                             </button>

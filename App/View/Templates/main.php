@@ -1,4 +1,5 @@
-<main>
+<main class="text-center">
+    <?php if (isset($_SESSION['universalError'])) echo $_SESSION['universalError'] ?>
     <div class="position-relative overflow-hidden row p-3 p-md-5 m-md-3 text-center bg-light">
         <div class="col-md-5">
             <img class="main-img" src="image/monday.jpg" alt="">

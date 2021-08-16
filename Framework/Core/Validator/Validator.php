@@ -66,14 +66,13 @@ class Validator
         $this->session->setKey(
             "wrongCredentials",
             '<div class="alert alert-danger" role="alert">
-                <b>Wrong credentials! </b>
+                <b>Wrong credentials!</b>
             </div>'
         );
     }
 
     public function setRegistrationError(\Exception $exception): void
     {
-        $message = $exception->getMessage();
         $this->session->setKey(
             "registrationError",
             "<div class='alert alert-danger' role='alert'>
@@ -82,4 +81,21 @@ class Validator
         );
     }
 
+    public function setUniversalError(\Exception $exception): void
+    {
+        $this->session->setKey(
+            "universalError",
+            "<div class='alert alert-danger' role='alert'>
+                <form action='/unsetMessage' method='post'>
+                    <b>{$exception->getMessage()}</b>
+                    <button class='col-md-1 btn btn-danger' name='unsetMessage' type='submit'>Ок</button>
+                </form>
+            </div>"
+        );
+    }
+
+    public function unsetError(): void
+    {
+        $this->session->deleteKey("universalError");
+    }
 }
