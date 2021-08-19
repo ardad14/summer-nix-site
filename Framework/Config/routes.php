@@ -61,4 +61,8 @@ return [
         'controller' => 'product',
         "action" => "unsetError"
     ],
+    '^catalogParse$' => [
+        'controller' => 'product',
+        "action" => "booksCatalogJson"
+    ],
 ];
