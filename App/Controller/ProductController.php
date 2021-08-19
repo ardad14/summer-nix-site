@@ -11,12 +11,14 @@ class ProductController extends Controller
 {
     private BookService $bookService;
     private Validator $validator;
+    //private Pagination $pagination;
 
     public function __construct()
     {
         parent::__construct();
         $this->bookService = new BookService();
         $this->validator = new Validator();
+        //$this->pagination = new Pagination();
     }
 
 
@@ -33,19 +35,35 @@ class ProductController extends Controller
     public function catalog(): void
     {
         $pagination = new Pagination();
-        $allBooks = $this->bookService->getAmountInRange(
-            $pagination->getBookFromSelect(),
-            $pagination::getBookAmount()
-        );
         $this->templeater->renderContent(
             'Каталог',
             'catalog',
             [
-                'books' => $allBooks,
                 'pagination' => $pagination->getPageAmount(),
                 'currentPage' => $pagination->getCurrentPage()
             ]
         );
+    }
+
+    public function booksCatalogJson()
+    {
+        $pagination = new Pagination();
+        $allBooks = $this->bookService->getAmountInRange(
+            $pagination->getBookFromSelect(),
+            $pagination::getBookAmount()
+        );
+        $jsonFormat = array();
+        foreach ($allBooks as $book) {
+            $jsonFormat[] = [
+                "title" => $book->getTitle(),
+                "image" => $book->getImage(),
+                "author" => $book->getAuthor(),
+                "price" => $book->getPrice(),
+                "slug" => $book->getSlug()
+            ];
+        }
+
+        echo json_encode($jsonFormat);
     }
 
     public function search(): void

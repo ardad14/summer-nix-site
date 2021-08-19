@@ -1,7 +1,4 @@
 const setBook = async () => {
-    let image = document.getElementById("image");
-    let author = document.getElementById("author");
-    let title = document.getElementById("title");
     let paggination = document.getElementById("container");
 
     const responce = await fetch("http://server1.com/catalogParse");
