@@ -32,7 +32,7 @@ class BasketController extends Controller
             return;
         }
 
-        $currentBook = $this->bookService->getBy(["slug" => $_POST['slug']]);
+        $currentBook = $this->bookService->getByField(["slug" => $_POST['slug']]);
 
         $bookBasketId = $this->isBookInBasket($currentBook);
         if ($bookBasketId !== false) {
@@ -50,7 +50,7 @@ class BasketController extends Controller
             header("location: ../login");
             return;
         }
-        $currentBook = $this->bookService->getBy(["slug" => $_POST['slug']]);
+        $currentBook = $this->bookService->getByField(["slug" => $_POST['slug']]);
 
         $key = $this->isBookInBasket($currentBook);
         unset($_SESSION['books'][$key]);
