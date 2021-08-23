@@ -12,7 +12,7 @@ class BookModel extends Model
      * @throws PDOException
      * @throws NotSuchBookException
      */
-    public function getBy(array $params): ?array
+    public function getByField(array $params): ?array
     {
         try {
             $query = '
@@ -25,7 +25,7 @@ class BookModel extends Model
                 if ($i === 0) {
                     $query .= " " . $field .  " = " . "'$value'" . " ";
                 } else {
-                    $query .= " AND " . "$field = '$value'";
+                    $query .= " AND " . $field .  " = " . "'$value'";
                 }
                 $i++;
             }
@@ -68,6 +68,38 @@ class BookModel extends Model
             throw new $e();
         }
 
+        $bookArray = $result->fetchAll();
+        if (empty($bookArray)) {
+            throw new NotSuchBookException();
+        }
+        return $bookArray;
+    }
+
+    /**
+     * @throws PDOException
+     * @throws NotSuchBookException
+     */
+    public function getInInterval(string $field, $minValue = null, $maxValue = null): ?array
+    {
+        try {
+            $query = '
+                SELECT * 
+                FROM `books`
+                WHERE ';
+            if ($minValue && !$maxValue) {
+                $query .= $field . " > " . $minValue;
+            } else if (!$minValue && $maxValue) {
+                $query .= $field . " < " . $maxValue;
+            } else if ($minValue && $maxValue) {
+                $query .= $field . " > " . $minValue .
+                    " AND " . $field . " < " . $maxValue;
+            }
+
+            $result = $this->dbConnect->prepare($query);
+            $result->execute();
+        } catch (PDOException $e) {
+            throw new $e();
+        }
         $bookArray = $result->fetchAll();
         if (empty($bookArray)) {
             throw new NotSuchBookException();

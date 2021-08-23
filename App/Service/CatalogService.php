@@ -39,4 +39,22 @@ class CatalogService
         }
         return $this->bookService->getAll($sortBy, $sortType);
     }
+
+    public function filterCatalog():array
+    {
+        $priceFrom = null;
+        $priceUntil = null;
+
+        switch (true) {
+            case isset($_SESSION["priceFrom"]):
+                $priceFrom = $_SESSION["priceFrom"];
+                break;
+            case isset($_SESSION["priceUntil"]):
+                $priceUntil = $_SESSION["priceUntil"];
+                break;
+        }
+        return $this->bookService->getInIterval("price", $priceFrom, $priceUntil);
+    }
+
+
 }

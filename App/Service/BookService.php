@@ -16,16 +16,32 @@ class BookService
         $this->bookMapper = new BookMapper();
     }
 
-    public function getBy(array $params): array
+    public function getByField(array $params): array
     {
-        return $this->bookMapper->mapBook($this->bookModel->getBy($params));
+        return $this->bookMapper->mapBook($this->bookModel->getByField($params));
     }
 
     public function getAll($order = null, $type = null): array
     {
-        if (!$order) {
-            return $this->bookMapper->mapBook($this->bookModel->getAll());
-        }
         return $this->bookMapper->mapBook($this->bookModel->getAll($order, $type));
     }
+
+    public function getInIterval(string $field, $minValue = null, $maxValue = null)
+    {
+        return $this->bookMapper->mapBook($this->bookModel->getInInterval($field, $minValue, $maxValue));
+    }
+
+    public function clearSorting()
+    {
+        if (isset($_SESSION['priceFrom'])) {
+            unset($_SESSION['priceFrom']);
+        }
+        if (isset($_SESSION['priceUntil'])) {
+            unset($_SESSION['priceUntil']);
+        }
+        if (isset($_SESSION['sorting'])) {
+            unset($_SESSION['sorting']);
+        }
+    }
+
 }

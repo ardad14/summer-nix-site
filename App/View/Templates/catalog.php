@@ -23,6 +23,23 @@
                     <button class="btn btn-primary" name="sorting" value="byPriceDesc">Показать</button>
                 </label>
             </form>
+            <hr>
+            <h3>Фильтрация</h3>
+            <form action="/catalog" method="post">
+                <label class="mt-4" for="">
+                    <h5>Цена</h5>
+                    <div class="d-flex flex-md-row justify-content-center mt-3">
+                        <input class="col-md-3 bg-light border border-secondary filtration-input" value="<?php if (isset($_SESSION['priceFrom'])) echo $_SESSION['priceFrom']; ?>" name="priceFrom" type="number" placeholder="От">
+                        <input class="col-md-3 bg-light border border-secondary filtration-input" value="<?php if (isset($_SESSION['priceUntil'])) echo $_SESSION['priceUntil']; ?>" name="priceUntil" type="number" placeholder="До">
+                        <button class="btn btn-primary" type="submit">Показать</button>
+                    </div>
+                </label>
+            </form>
+            <form action="/clearFiltration" method="post">
+                <button class="btn btn-success mt-5" type="submit">
+                     Очистить
+                </button>
+            </form>
         </aside>
     </div>
         <div class="container1">
