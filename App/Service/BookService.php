@@ -16,28 +16,16 @@ class BookService
         $this->bookMapper = new BookMapper();
     }
 
-    public function getById($id): array
+    public function getBy(array $params): array
     {
-        return $this->bookMapper->mapBook($this->bookModel->getById($id));
+        return $this->bookMapper->mapBook($this->bookModel->getBy($params));
     }
 
-    public function getAll(): array
+    public function getAll($order = null, $type = null): array
     {
-        return $this->bookMapper->mapBook($this->bookModel->getAll());
-    }
-
-    public function getBySlug($slug): array
-    {
-        return $this->bookMapper->mapBook($this->bookModel->getBySlug($slug));
-    }
-
-    public function getByTitle($title): array
-    {
-        return $this->bookMapper->mapBook($this->bookModel->getByTitle($title));
-    }
-
-    public function getAmountInRange($from, $amount): array
-    {
-        return $this->bookMapper->mapBook($this->bookModel->getAmountInRange($from, $amount));
+        if (!$order) {
+            return $this->bookMapper->mapBook($this->bookModel->getAll());
+        }
+        return $this->bookMapper->mapBook($this->bookModel->getAll($order, $type));
     }
 }
