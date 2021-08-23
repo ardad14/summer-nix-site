@@ -2,23 +2,27 @@
     <div class="album py-6 text-dark mt-5">
         <aside class="col-md-3 text-center aside" style="float: left">
             <h3>Сортировка</h3>
-            <label class="d-flex flex-md-row justify-content-center mt-4" for="">
-                <h5>По названию (А-Я)</h5>
-                <input class="ml-1" type="checkbox">
-            </label>
-            <label class="d-flex flex-md-row justify-content-center mt-4" for="">
-                <h5>По названию (Я-А)</h5>
-                <input class="ml-1" type="checkbox">
-            </label>
-            <label class="d-flex flex-md-row justify-content-center mt-4" for="">
-                <h5>По стоимости ↑</h5>
-                <input class="ml-1" type="checkbox">
-            </label>
-            <label class="d-flex flex-md-row justify-content-center mt-4" for="">
-                <h5>По стоимости ↓</h5>
-                <input class="ml-1" type="checkbox">
-            </label>
+            <form action="/catalog" method="post">
+                <label class="d-flex flex-md-row justify-content-center mt-4" for="">
+                    <h5>По названию (А-Я)</h5>
+                    <button class="btn btn-primary" name="sorting" value="byTitle">Показать</button>
+                </label>
 
+                <label class="d-flex flex-md-row justify-content-center mt-4" for="">
+                    <h5>По названию (Я-А)</h5>
+                    <button class="btn btn-primary" name="sorting" value="byTitleDesc">Показать</button>
+                </label>
+
+                <label class="d-flex flex-md-row justify-content-center mt-4" for="">
+                    <h5>По стоимости ↑</h5>
+                    <button class="btn btn-primary" name="sorting" value="byPrice">Показать</button>
+                </label>
+
+                <label class="d-flex flex-md-row justify-content-center mt-4" for="">
+                    <h5>По стоимости ↓</h5>
+                    <button class="btn btn-primary" name="sorting" value="byPriceDesc">Показать</button>
+                </label>
+            </form>
         </aside>
     </div>
         <div class="container1">
@@ -33,7 +37,7 @@
                                 <button class="<?php if($vars['currentPage'] == $item) echo "bg-secondary text-white"; else echo "bg-white";?>" name="page" type="submit" value="<?php echo $item ?>"><?php echo $item ?>
                                 </button>
                             </li>
-                        </form>`
+                        </form>
                     <?php endforeach; ?>
                 </ul>
             </div>

@@ -150,3 +150,11 @@ h2{
     justify-content: center;
 
 }
+
+.aside {
+
+}
+
+aside label input {
+    margin-left: 20px;
+}
