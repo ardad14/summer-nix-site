@@ -12,37 +12,30 @@ class BookModel extends Model
      * @throws PDOException
      * @throws NotSuchBookException
      */
-    public function getById(int $id): ?array
+    public function getBy(array $params): ?array
     {
         try {
-            $query = $this->dbConnect->prepare('SELECT * FROM `books` WHERE id = ?');
-            $query->execute([$id]);
-        } catch (PDOException $e) {
-            throw new $e();
-        }
-        $bookArray = $query->fetchAll();
-        if (empty($bookArray)) {
-            throw new NotSuchBookException();
-        }
-        return $bookArray;
-    }
-
-    /**
-     * @throws PDOException
-     * @throws NotSuchBookException
-     */
-    public function getAll(): ?array
-    {
-        try {
-            $query = $this->dbConnect->query('
+            $query = '
                 SELECT * 
                 FROM `books`
-            ');
+                WHERE';
+
+            $i = 0;
+            foreach ($params as $field => $value) {
+                if ($i === 0) {
+                    $query .= " " . $field .  " = " . "'$value'" . " ";
+                } else {
+                    $query .= " AND " . "$field = '$value'";
+                }
+                $i++;
+            }
+
+            $result = $this->dbConnect->prepare($query);
+            $result->execute();
         } catch (PDOException $e) {
             throw new $e();
         }
-
-        $bookArray = $query->fetchAll();
+        $bookArray = $result->fetchAll();
         if (empty($bookArray)) {
             throw new NotSuchBookException();
         }
@@ -53,69 +46,29 @@ class BookModel extends Model
      * @throws PDOException
      * @throws NotSuchBookException
      */
-    public function getBySlug(string $slug): ?array
+    public function getAll($orders = null, $type = null): ?array
     {
         try {
-            $query = $this->dbConnect->prepare('
-                SELECT * 
-                FROM `books` 
-                WHERE slug = ?
-            ');
-            $query->execute([$slug]);
-        } catch (PDOException $e) {
-            throw new $e();
-        }
-
-        $bookArray = $query->fetchAll();
-        if (empty($bookArray)) {
-            throw new NotSuchBookException();
-        }
-        return $bookArray;
-    }
-
-    /**
-     * @throws PDOException
-     * @throws NotSuchBookException
-     */
-    public function getByTitle(string $title): ?array
-    {
-        try {
-            $query = $this->dbConnect->prepare('
-                SELECT * 
-                FROM `books` 
-                WHERE title = ?
-            ');
-            $query->execute([$title]);
-        } catch (PDOException $e) {
-            throw new $e();
-        }
-
-        $bookArray = $query->fetchAll();
-        if (empty($bookArray)) {
-            throw new NotSuchBookException();
-        }
-        return $bookArray;
-    }
-
-    /**
-     * @throws  PDOException
-     * @throws NotSuchBookException
-     */
-    public function getAmountInRange(int $from, int $amount): ?array
-    {
-        try {
-            $query = $this->dbConnect->prepare('
+            $query = '
                 SELECT * 
                 FROM `books`
-                WHERE id > :from 
-                  AND id <= :end
-            ');
-            $query->execute([":from" => $from, ":end" => $from + $amount]);
+            ';
+
+            if ($orders) {
+                $query .= " ORDER BY " . $orders;
+            }
+            if ($type) {
+                $query .= " " . $type;
+            }
+
+            $result = $this->dbConnect->prepare($query);
+            $result->execute();
+
         } catch (PDOException $e) {
             throw new $e();
         }
 
-        $bookArray = $query->fetchAll();
+        $bookArray = $result->fetchAll();
         if (empty($bookArray)) {
             throw new NotSuchBookException();
         }

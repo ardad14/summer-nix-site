@@ -3,20 +3,19 @@
 namespace Framework\Core\Pagination;
 
 use App\Service\BookService;
-use Framework\Session\Session;
+use App\Service\CatalogService;
 
 class Pagination
 {
     private $totalCount;
     private $pageAmount;
-    private Session $session;
+    private BookService $bookService;
     private const BOOKAMOUNT = 6;
 
     public function __construct()
     {
-        $this->session = Session::getInstance();
-        $bs = new BookService();
-        $this->totalCount = count($bs->getAll());
+        $this->bookService = new BookService();
+        $this->totalCount = count($this->bookService->getAll());
         $this->pageAmount = $this->totalCount / self::BOOKAMOUNT;
     }
 
@@ -48,11 +47,27 @@ class Pagination
     public function getBookFromSelect(): int
     {
         if(!isset($_GET['page'])) {
-            $bookFrom = 1;
+            $bookFrom = 0;
         } else {
             $bookFrom = $_GET['page']  *  self::BOOKAMOUNT -  self::BOOKAMOUNT;
         }
         return $bookFrom;
+    }
+
+    public function getBooks(): array
+    {
+        $catalogService = new CatalogService();
+        $bookFromSelect = $this->getBookFromSelect();
+        $allBooks = $catalogService->sortingCatalog();
+        $pageBooks = array();
+        $i = 0;
+        foreach ($allBooks as $book) {
+            if ($i >= $bookFromSelect && $i < $bookFromSelect + self::getBookAmount()) {
+                $pageBooks[] = $book;
+            } 
+            $i++;
+        }
+        return $pageBooks;
     }
 
 }
