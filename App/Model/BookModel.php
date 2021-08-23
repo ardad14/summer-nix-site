@@ -46,18 +46,29 @@ class BookModel extends Model
      * @throws PDOException
      * @throws NotSuchBookException
      */
-    public function getAll(): ?array
+    public function getAll($orders = null, $type = null): ?array
     {
         try {
-            $query = $this->dbConnect->query('
+            $query = '
                 SELECT * 
                 FROM `books`
-            ');
+            ';
+
+            if ($orders) {
+                $query .= " ORDER BY " . $orders;
+            }
+            if ($type) {
+                $query .= " " . $type;
+            }
+
+            $result = $this->dbConnect->prepare($query);
+            $result->execute();
+
         } catch (PDOException $e) {
             throw new $e();
         }
 
-        $bookArray = $query->fetchAll();
+        $bookArray = $result->fetchAll();
         if (empty($bookArray)) {
             throw new NotSuchBookException();
         }
