@@ -65,4 +65,8 @@ return [
         'controller' => 'product',
         "action" => "booksCatalogJson"
     ],
+    '^clearFiltration$' => [
+        'controller' => 'product',
+        "action" => "clearFiltration"
+    ],
 ];
