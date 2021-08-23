@@ -23,7 +23,7 @@ class ProductController extends Controller
 
     public function product(): void
     {
-        $currentBook = $this->bookService->getBy(["slug" => $_GET['slug']]);
+        $currentBook = $this->bookService->getByField(["slug" => $_GET['slug']]);
         $this->templeater->renderContent(
             'Товар',
             'product',
@@ -36,6 +36,13 @@ class ProductController extends Controller
         $this->pagination = new Pagination();
         if(isset($_POST['sorting'])) {
             $_SESSION["sorting"] = $_POST['sorting'];
+        }
+
+        if(isset($_POST['priceFrom'])) {
+            $_SESSION["priceFrom"] = $_POST['priceFrom'];
+        }
+        if(isset($_POST['priceUntil'])) {
+            $_SESSION["priceUntil"] = $_POST['priceUntil'];
         }
 
         $this->templeater->renderContent(
@@ -66,10 +73,16 @@ class ProductController extends Controller
         echo json_encode($jsonFormat);
     }
 
+    public function clearFiltration()
+    {
+        $this->bookService->clearSorting();
+        header("location: ../catalog");
+    }
+
     public function search(): void
     {
         try {
-            $currentBook = $this->bookService->getBy(["title" => $_POST['search']]);
+            $currentBook = $this->bookService->getByField(["title" => $_POST['search']]);
         } catch (\Exception $e) {
             $this->validator->setUniversalError($e);
             header("location: ../main");

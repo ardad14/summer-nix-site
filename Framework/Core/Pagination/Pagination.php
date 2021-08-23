@@ -58,7 +58,11 @@ class Pagination
     {
         $catalogService = new CatalogService();
         $bookFromSelect = $this->getBookFromSelect();
-        $allBooks = $catalogService->sortingCatalog();
+        if(isset($_SESSION["priceFrom"]) || isset($_SESSION["priceUntil"])) {
+            $allBooks = $catalogService->filterCatalog();
+        } else {
+            $allBooks = $catalogService->sortingCatalog();
+        }
         $pageBooks = array();
         $i = 0;
         foreach ($allBooks as $book) {
