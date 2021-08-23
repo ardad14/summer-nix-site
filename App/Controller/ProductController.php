@@ -11,20 +11,19 @@ class ProductController extends Controller
 {
     private BookService $bookService;
     private Validator $validator;
-    //private Pagination $pagination;
+    private Pagination $pagination;
 
     public function __construct()
     {
         parent::__construct();
         $this->bookService = new BookService();
         $this->validator = new Validator();
-        //$this->pagination = new Pagination();
+        $this->pagination = new Pagination();
     }
-
 
     public function product(): void
     {
-        $currentBook = $this->bookService->getBySlug($_GET['slug']);
+        $currentBook = $this->bookService->getBy(["slug" => $_GET['slug']]);
         $this->templeater->renderContent(
             'Товар',
             'product',
@@ -34,24 +33,25 @@ class ProductController extends Controller
 
     public function catalog(): void
     {
-        $pagination = new Pagination();
+        $this->pagination = new Pagination();
+        if(isset($_POST['sorting'])) {
+            $_SESSION["sorting"] = $_POST['sorting'];
+        }
+
         $this->templeater->renderContent(
             'Каталог',
             'catalog',
             [
-                'pagination' => $pagination->getPageAmount(),
-                'currentPage' => $pagination->getCurrentPage()
+                'pagination' => $this->pagination->getPageAmount(),
+                'currentPage' => $this->pagination->getCurrentPage()
             ]
         );
     }
 
     public function booksCatalogJson()
     {
-        $pagination = new Pagination();
-        $allBooks = $this->bookService->getAmountInRange(
-            $pagination->getBookFromSelect(),
-            $pagination::getBookAmount()
-        );
+        $allBooks = $this->pagination->getBooks();
+
         $jsonFormat = array();
         foreach ($allBooks as $book) {
             $jsonFormat[] = [
@@ -69,7 +69,7 @@ class ProductController extends Controller
     public function search(): void
     {
         try {
-            $currentBook = $this->bookService->getByTitle($_POST['search']);
+            $currentBook = $this->bookService->getBy(["title" => $_POST['search']]);
         } catch (\Exception $e) {
             $this->validator->setUniversalError($e);
             header("location: ../main");
