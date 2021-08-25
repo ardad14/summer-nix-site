@@ -71,6 +71,16 @@ class Validator
         );
     }
 
+    public function setAdminLoginError(): void
+    {
+        $this->session->setKey(
+            "adminWrongCredentials",
+            '<div class="alert alert-danger" role="alert">
+                <b>Wrong credentials!</b>
+            </div>'
+        );
+    }
+
     public function setRegistrationError(\Exception $exception): void
     {
         $this->session->setKey(
