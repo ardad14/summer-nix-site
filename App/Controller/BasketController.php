@@ -4,15 +4,18 @@ namespace App\Controller;
 
 use Framework\Core\AbstractController\Controller;
 use App\Service\BookService;
+use App\Service\UserService;
 
 class BasketController extends Controller
 {
     private BookService $bookService;
+    private UserService $userService;
 
     public function __construct()
     {
         parent::__construct();
         $this->bookService = new BookService();
+        $this->userService = new UserService();
     }
 
     public function basket(): void
@@ -56,6 +59,17 @@ class BasketController extends Controller
         unset($_SESSION['books'][$key]);
 
         header("location: ../basket");
+    }
+
+    public function buy(): void
+    {
+        $currentBook = $this->bookService->getByField(["slug" => $_POST['slug']]);
+        $this->bookService->buyBook($currentBook[0]->getId(), $_POST["amount"]);
+
+        $userId = $this->userService->getByField(["login" => $this->authentication->getLogin()]);
+        $this->userService->setNewBook($userId[0]->getId(), $currentBook[0]->getId(), $_POST["amount"]);
+
+        $this->deleteBook();
     }
 
     private function isBookInBasket($book)

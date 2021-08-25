@@ -31,13 +31,17 @@
                             </div>
                         </div>
                         <div class="btn_basket">
-                            <input type="number" step="1" min="1" placeholder="<?php echo $list['amount']?>">
                             <form class="d-inline" action="basket/delete" method="POST">
                                 <button name="slug" class="delete" type="submit" value="<?php echo $book->getSlug() ?>">
                                     Удалить с корзины
                                 </button>
                             </form>
-                          <button class="buy">Купить</button>
+                            <form class="d-inline" action="basket/buy" method="POST">
+                                <input name="amount" type="number" step="1" min="1" placeholder="<?php echo $list['amount']?>">
+                                <button name="slug" class="buy" type="submit" value="<?php echo $book->getSlug() ?>">
+                                    Купить
+                                </button>
+                            </form>
                         </div>
                     </section>
                     <?php endforeach; ?>
