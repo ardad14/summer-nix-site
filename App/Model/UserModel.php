@@ -3,37 +3,70 @@
 namespace App\Model;
 
 use Framework\Core\AbstractModel\Model;
+use Framework\Helpers\Exceptions\UserExceptions\NotSuchUserException;
 use PDOException;
 use App\Service\BookService;
 
 class UserModel extends Model
 {
-    public function getByLogin($value): ?array
+    /**
+     * @throws PDOException
+     * @throws NotSuchUserException
+     */
+    public function getByField(array $params, string $role): ?array
     {
         try {
-            $query = $this->dbConnect->prepare('
+            $query = '
                 SELECT * 
                 FROM `users`
-                WHERE login = :value 
-            ');
-            $query->execute([':value' => $value]);
-            return $query->fetchAll();
+                WHERE role = ' . "'$role'" . ' AND ';
+
+            $i = 0;
+            foreach ($params as $field => $value) {
+                if ($i === 0) {
+                    $query .= $field .  " = " . "'$value'" . " ";
+                } else {
+                    $query .= " AND " . $field .  " = " . "'$value'";
+                }
+                $i++;
+            }
+
+            $result = $this->dbConnect->prepare($query);
+            $result->execute();
         } catch (PDOException $e) {
             throw new $e();
         }
+        $userArray = $result->fetchAll();
+        if (empty($userArray)) {
+            throw new NotSuchUserException();
+        }
+        return $userArray;
     }
 
+    /**
+     * @throws PDOException
+     * @throws NotSuchUserException
+     */
     public function getAll(): ?array
     {
         try {
-            $query = $this->dbConnect->query('
+            $query = '
                 SELECT * 
                 FROM `users`
-            ');
-            return $query->fetchAll();
+            ';
+
+            $result = $this->dbConnect->prepare($query);
+            $result->execute();
+
         } catch (PDOException $e) {
             throw new $e();
         }
+
+        $userArray = $result->fetchAll();
+        if (empty($userArray)) {
+            throw new NotSuchUserException();
+        }
+        return $userArray;
     }
 
     public function setNewUser(
@@ -65,16 +98,16 @@ class UserModel extends Model
         }
     }
 
-    public function setNewBook(int $userId, int $bookId): void
+    public function setNewBook(int $userId, int $bookId, int $amount): void
     {
         try {
             $query = $this->dbConnect->prepare('
                 INSERT 
                 INTO `books_users`
-                (id_book, id_user) 
-                VALUES (:bookId, :userId) 
+                (id_user, id_book, amount) 
+                VALUES (:userId, :bookId, :amount) 
             ');
-            $query->execute([':userId' => $userId, ':bookId' => $bookId]);
+            $query->execute([':userId' => $userId, ':bookId' => $bookId, ':amount' => $amount]);
         } catch (PDOException $e) {
             throw new $e();
         }
@@ -111,6 +144,20 @@ class UserModel extends Model
                 $booksArray[] = $bookService->getById($value['id_book']);
             }
             return $booksArray;
+        } catch (PDOException $e) {
+            throw new $e();
+        }
+    }
+
+    public function deleteUser(int $id): void
+    {
+        try {
+            $result = $this->dbConnect->prepare("
+                DELETE 
+                FROM `users`
+                WHERE id = :id 
+            ");
+            $result->execute([":id" => $id]);
         } catch (PDOException $e) {
             throw new $e();
         }
