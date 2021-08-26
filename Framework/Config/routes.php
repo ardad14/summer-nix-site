@@ -53,6 +53,10 @@ return [
         'controller' => 'basket',
         "action" => "addBook"
     ],
+    '^basket/buy$' => [
+        'controller' => 'basket',
+        "action" => "buy"
+    ],
     '^search$' => [
         'controller' => 'product',
         "action" => "search"
@@ -68,5 +72,45 @@ return [
     '^clearFiltration$' => [
         'controller' => 'product',
         "action" => "clearFiltration"
+    ],
+    '^admin$' => [
+        'controller' => 'admin',
+        "action" => "admin"
+    ],
+    '^admin/book$' => [
+        'controller' => 'admin',
+        "action" => "book"
+    ],
+    '^admin/customer$' => [
+        'controller' => 'admin',
+        "action" => "customer"
+    ],
+    '^admin/login$' => [
+        'controller' => 'admin',
+        "action" => "login"
+    ],
+    '^admin/book/delete$' => [
+        'controller' => 'admin',
+        "action" => "deleteBook"
+    ],
+    '^admin/book/update' => [
+        'controller' => 'admin',
+        "action" => "update"
+    ],
+    '^admin/book/change' => [
+        'controller' => 'admin',
+        "action" => "changeBookData"
+    ],
+    '^admin/book/addForm' => [
+        'controller' => 'admin',
+        "action" => "addForm"
+    ],
+    '^admin/book/add' => [
+        'controller' => 'admin',
+        "action" => "add"
+    ],
+    '^admin/admin/auth$' => [
+        'controller' => 'admin',
+        "action" => "auth"
     ],
 ];
