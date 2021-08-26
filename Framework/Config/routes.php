@@ -89,6 +89,10 @@ return [
         'controller' => 'admin',
         "action" => "login"
     ],
+    '^admin/logout$' => [
+        'controller' => 'admin',
+        "action" => "logout"
+    ],
     '^admin/book/delete$' => [
         'controller' => 'admin',
         "action" => "deleteBook"
