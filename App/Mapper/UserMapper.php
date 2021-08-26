@@ -17,7 +17,8 @@ class UserMapper
                 $line["phone"],
                 $line["email"],
                 $line["login"],
-                $line["password"]
+                $line["password"],
+                $line["role"]
             );
         }
         return $users;

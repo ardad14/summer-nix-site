@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use App\Entity\Book;
 use Framework\Core\AbstractModel\Model;
 use PDOException;
 use Framework\Helpers\Exceptions\BookExceptions\NotSuchBookException;
@@ -105,5 +106,108 @@ class BookModel extends Model
             throw new NotSuchBookException();
         }
         return $bookArray;
+    }
+
+    public function buyBook(int $id, int $amount): void
+    {
+        try {
+            $result = $this->dbConnect->prepare("
+                UPDATE `books`
+                SET amount = amount - :amount
+                WHERE id = :id 
+            ");
+            $result->execute([":amount" => $amount, ":id" => $id]);
+        } catch (PDOException $e) {
+            throw new $e();
+        }
+    }
+
+    public function createBook(
+        $title,
+        $author,
+        $price,
+        $amount,
+        $image,
+        $description,
+        $slug,
+        $genre
+    ): void {
+        try {
+            $result = $this->dbConnect->prepare("
+                INSERT 
+                INTO `books`
+                (title, description, author, price, amount, image, slug, genre)
+                VALUES 
+                (:title, :description, :author, :price, :amount, :image, :slug, :genre) 
+            ");
+            $result->execute([
+                ":title" => $title,
+                ":description" => $description,
+                ":author" => $author,
+                ":price" => $price,
+                ":amount" => $amount,
+                ':image' => $image,
+                ":slug" => $slug,
+                ":genre" => $genre,
+            ]);
+        } catch (PDOException $e) {
+            throw new $e();
+        }
+    }
+
+    public function deleteBook(int $id): void
+    {
+        try {
+            $result = $this->dbConnect->prepare("
+                DELETE 
+                FROM `books`
+                WHERE id = :id 
+            ");
+            $result->execute([":id" => $id]);
+        } catch (PDOException $e) {
+            throw new $e();
+        }
+    }
+
+    public function updateBook(
+        $id,
+        $title,
+        $author,
+        $price,
+        $amount,
+        $image,
+        $description,
+        $slug,
+        $genre
+    ): void {
+        try {
+            $result = $this->dbConnect->prepare("
+                UPDATE `books`
+                SET 
+                    title = :title,
+                    description = :description,
+                    author = :author,
+                    price = :price,
+                    amount = :amount,
+                    image = :image,
+                    slug = :slug,
+                    genre = :genre
+                WHERE 
+                      id = :id 
+            ");
+            $result->execute([
+                ':id' => $id,
+                ":title" => $title,
+                ":description" => $description,
+                ":author" => $author,
+                ":price" => $price,
+                ":amount" => $amount,
+                ":image" => $image,
+                ":slug" => $slug,
+                ":genre" => $genre,
+            ]);
+        } catch (PDOException $e) {
+            throw new $e();
+        }
     }
 }
