@@ -5,11 +5,14 @@ namespace App\Controller;
 use Framework\Core\AbstractController\Controller;
 use App\Service\BookService;
 use App\Service\UserService;
+use Framework\Core\Validator\Validator;
+use Framework\Helpers\Exceptions\BookExceptions\NotEnoughBookException;
 
 class BasketController extends Controller
 {
     private BookService $bookService;
     private UserService $userService;
+    private Validator $validator;
 
     public function __construct()
     {
@@ -63,13 +66,18 @@ class BasketController extends Controller
 
     public function buy(): void
     {
-        $currentBook = $this->bookService->getByField(["slug" => $_POST['slug']]);
-        $this->bookService->buyBook($currentBook[0]->getId(), $_POST["amount"]);
+        try {
+            $currentBook = $this->bookService->getByField(["slug" => $_POST['slug']]);
+            $this->bookService->buyBook($currentBook[0]->getId(), $_POST["amount"]);
 
-        $userId = $this->userService->getByField(["login" => $this->authentication->getLogin()]);
-        $this->userService->setNewBook($userId[0]->getId(), $currentBook[0]->getId(), $_POST["amount"]);
+            $userId = $this->userService->getByField(["login" => $this->authentication->getLogin()]);
+            $this->userService->setNewBook($userId[0]->getId(), $currentBook[0]->getId(), $_POST["amount"]);
 
-        $this->deleteBook();
+            $this->deleteBook();
+        } catch (NotEnoughBookException $exception) {
+            $this->validator->setUniversalError($exception);
+        }
+
     }
 
     private function isBookInBasket($book)
