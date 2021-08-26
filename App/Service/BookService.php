@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use App\Entity\Book;
 use App\Model\BookModel;
 use App\Mapper\BookMapper;
 
@@ -44,4 +45,53 @@ class BookService
         }
     }
 
+    public function buyBook(string $id, int $amount): void
+    {
+        $this->bookModel->buyBook($id, $amount);
+    }
+
+    public function createBook(): void
+    {
+        $target_dir = "image/";
+        $target_file =  $_POST['title'] . "_" . basename($_FILES["image"]["name"]);
+        move_uploaded_file($_FILES["image"]["tmp_name"], $target_dir . $target_file);
+
+        $this->bookModel->createBook(
+            $_POST['title'],
+            $_POST['author'],
+            $_POST['price'],
+            $_POST['amount'],
+            $target_file,
+            $_POST['description'],
+            $_POST['slug'],
+            $_POST['genre'],
+        );
+
+    }
+
+    public function deleteBook($id)
+    {
+        $this->bookModel->deleteBook($id);
+    }
+
+    public function updateBook($id)
+    {
+        if (isset($_FILES["image"]["name"])) {
+            $target_dir = "image/";
+            $target_file =  $_POST['title'] . "_" . basename($_FILES["image"]["name"]);
+            move_uploaded_file($_FILES["image"]["tmp_name"], $target_dir . $target_file);
+        }
+
+        $this->bookModel->updateBook(
+            $id,
+            $_POST['title'],
+            $_POST['author'],
+            $_POST['price'],
+            $_POST['amount'],
+            $target_file,
+            $_POST['description'],
+            $_POST['slug'],
+            $_POST['genre'],
+        );
+    }
 }
