@@ -15,25 +15,23 @@
                                         <div class="d-flex flex-md-column">
                                             <h4><?php echo $book->getAuthor() ?></h4>
                                             <h4><?php echo $book->getTitle() ?></h4>
+                                            <div class="d-flex flex-md-row">
+                                                <form action="/admin/book/update" method="GET">
+                                                    <button class="btn btn-success" type="submit" name="id" value="<?php echo $book->getId() ?>">
+                                                        Обновить
+                                                    </button>
+                                                </form>
+                                                <form action="/admin/book/delete" method="POST">
+                                                    <button class="btn btn-danger" type="submit" name="id" value="<?php echo $book->getId() ?>">
+                                                        Удалить
+                                                    </button>
+                                                </form>
+                                            </div>
                                         </div>
                                         <div class="d-flex flex-md-column">
                                             <h4><?php echo $book->getPrice() . "грн" ?></h4>
                                             <h4><?php echo $book->getAmount() . "шт" ?></h4>
                                         </div>
-                                    </div>
-                                    <div class="d-flex flex-md-column">
-                                        <form action="/admin/book/update" method="GET">
-                                            <button class="btn btn-success" type="submit" name="id" value="<?php echo $book->getId() ?>">
-                                                Обновить
-                                            </button>
-                                        </form>
-                                    </div>
-                                    <div class="d-flex flex-md-column">
-                                        <form action="/admin/book/delete" method="POST">
-                                            <button class="btn btn-danger" type="submit" name="id" value="<?php echo $book->getId() ?>">
-                                                Удалить
-                                            </button>
-                                        </form>
                                     </div>
                                 </div>
                             </div>
