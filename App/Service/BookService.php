@@ -5,6 +5,7 @@ namespace App\Service;
 use App\Entity\Book;
 use App\Model\BookModel;
 use App\Mapper\BookMapper;
+use Framework\Helpers\Exceptions\BookExceptions\NotEnoughBookException;
 
 class BookService
 {
@@ -45,8 +46,15 @@ class BookService
         }
     }
 
+    /**
+     * @throws NotEnoughBookException
+     */
     public function buyBook(string $id, int $amount): void
     {
+        $storageAmount = $this->getByField(['id' => $id]);
+        if ($amount > $storageAmount) {
+            throw new NotEnoughBookException();
+        }
         $this->bookModel->buyBook($id, $amount);
     }
 
@@ -76,6 +84,7 @@ class BookService
 
     public function updateBook($id)
     {
+        $target_file = $this->getByField(["id" => $id])[0]->getImage();
         if (isset($_FILES["image"]["name"])) {
             $target_dir = "image/";
             $target_file =  $_POST['title'] . "_" . basename($_FILES["image"]["name"]);
