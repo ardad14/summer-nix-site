@@ -24,8 +24,9 @@
                 <li><a href="/admin/book" class="nav-link px-2 link-dark">Книги</a></li>
                 <li><a href="#" class="nav-link px-2 link-dark">Пользователи</a></li>
             </ul>
-            <button type="button" class="btn btn-light border border-dark">Выход</button>
-
+            <form action="/admin/logout" method="post">
+                <button type="submit" class="btn btn-light border border-dark <?php if(!isset($_SESSION['adminName'])) echo 'd-none'?>">Выход</button>
+            </form>
         </div>
     </div>
 </header>

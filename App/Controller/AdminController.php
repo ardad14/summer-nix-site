@@ -66,6 +66,12 @@ class AdminController extends Controller
         }
     }
 
+    public function logout(): void
+    {
+        $this->authentication->logOutAdmin();
+        header("location: ../");
+    }
+
     public function deleteBook(): void
     {
         $this->bookService->deleteBook($_POST['id']);

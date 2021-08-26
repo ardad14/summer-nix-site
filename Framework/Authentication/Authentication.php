@@ -73,4 +73,9 @@ class Authentication
     {
         $this->session->deleteKey("userName");
     }
+
+    public function logOutAdmin(): void
+    {
+        $this->session->deleteKey("adminName");
+    }
 }
