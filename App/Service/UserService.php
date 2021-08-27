@@ -58,4 +58,21 @@ class UserService
     {
         return $this->userModel->getAllBooks($userId);
     }
+
+    public function deleteUser(int $userId): void
+    {
+        $this->userModel->deleteUser($userId);
+    }
+
+    public function updateUser(int $userId): void
+    {
+        $this->userModel->updateUser(
+            $userId,
+            $_POST['name'],
+            $_POST['surname'],
+            $_POST['email'],
+            $_POST['phone'],
+            $_POST['login'],
+        );
+    }
 }

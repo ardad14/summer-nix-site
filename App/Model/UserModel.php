@@ -75,14 +75,15 @@ class UserModel extends Model
         string $email,
         string $phone,
         string $login,
-        string $password
+        string $password,
+        string $role = 'customer'
     ): void {
         try {
             $query = $this->dbConnect->prepare('
                 INSERT 
                 INTO `users`
-                (name, surname, email, phone, login, password) 
-                VALUES (:name, :surname, :email, :phone, :login, :password) 
+                (name, surname, email, phone, login, password, role) 
+                VALUES (:name, :surname, :email, :phone, :login, :password, :role) 
             ');
 
             $query->execute([
@@ -91,7 +92,41 @@ class UserModel extends Model
                 ':email' => $email,
                 ':phone' => $phone,
                 ':login' => $login,
-                ':password' => $password
+                ':password' => $password,
+                ':role' => $role
+            ]);
+        } catch (PDOException $e) {
+            throw new $e();
+        }
+    }
+
+    public function updateUser(
+        $id,
+        $name,
+        $surname,
+        $email,
+        $phone,
+        $login
+    ): void {
+        try {
+            $result = $this->dbConnect->prepare("
+                UPDATE `users`
+                SET 
+                    name = :name,
+                    surname = :surname,
+                    email = :email,
+                    phone = :phone,
+                    login = :login                    
+                WHERE 
+                      id = :id 
+            ");
+            $result->execute([
+                ':id' => $id,
+                ':name' => $name,
+                ':surname' => $surname,
+                ':email' => $email,
+                ':phone' => $phone,
+                ':login' => $login,
             ]);
         } catch (PDOException $e) {
             throw new $e();
