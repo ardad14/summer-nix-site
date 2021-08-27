@@ -20,9 +20,8 @@
             </a>
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="#" class="nav-link px-2 link-dark">Общее</a></li>
                 <li><a href="/admin/book" class="nav-link px-2 link-dark">Книги</a></li>
-                <li><a href="#" class="nav-link px-2 link-dark">Пользователи</a></li>
+                <li><a href="/admin/customer" class="nav-link px-2 link-dark">Пользователи</a></li>
             </ul>
             <form action="/admin/logout" method="post">
                 <button type="submit" class="btn btn-light border border-dark <?php if(!isset($_SESSION['adminName'])) echo 'd-none'?>">Выход</button>

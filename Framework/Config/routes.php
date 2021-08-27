@@ -99,7 +99,7 @@ return [
     ],
     '^admin/book/update' => [
         'controller' => 'admin',
-        "action" => "update"
+        "action" => "updateBook"
     ],
     '^admin/book/change' => [
         'controller' => 'admin',
@@ -111,10 +111,30 @@ return [
     ],
     '^admin/book/add' => [
         'controller' => 'admin',
-        "action" => "add"
+        "action" => "addBook"
     ],
     '^admin/admin/auth$' => [
         'controller' => 'admin',
         "action" => "auth"
+    ],
+    '^admin/customer/delete$' => [
+        'controller' => 'admin',
+        "action" => "deleteCustomer"
+    ],
+    '^admin/customer/update$' => [
+        'controller' => 'admin',
+        "action" => "updateCustomer"
+    ],
+    '^admin/customer/change' => [
+        'controller' => 'admin',
+        "action" => "changeCustomerData"
+    ],
+    '^admin/customer/addCustomerForm' => [
+        'controller' => 'admin',
+        "action" => "addCustomerForm"
+    ],
+    '^admin/customer/add' => [
+        'controller' => 'admin',
+        "action" => "addCustomer"
     ],
 ];

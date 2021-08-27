@@ -2,18 +2,21 @@
 
 namespace App\Controller;
 
+use App\Service\RegistrationService;
 use Framework\Core\AbstractController\Controller;
 use App\Service\BookService;
-use Framework\Core\Pagination\Pagination;
+use App\Service\UserService;
 
 class AdminController extends Controller
 {
     private BookService $bookService;
+    private UserService $userService;
 
     public function __construct()
     {
         parent::__construct();
         $this->bookService = new BookService();
+        $this->userService = new UserService();
     }
 
     public function admin(): void
@@ -28,14 +31,11 @@ class AdminController extends Controller
     public function book(): void
     {
         if ($this->authentication->isAdminAuth()) {
-            $pagination = new Pagination();
             $allBooks = $this->bookService->getAll();
             $this->templeater->renderAdmin(
                 'adminBook',
                 [
                     'books' => $allBooks,
-                    'pagination' => $pagination->getPageAmount(),
-                    'currentPage' => $pagination->getCurrentPage()
                 ]
             );
         } else {
@@ -46,7 +46,13 @@ class AdminController extends Controller
     public function customer(): void
     {
         if ($this->authentication->isAdminAuth()) {
-            $this->templeater->renderAdmin('adminCustomer');
+            $customers = $this->userService->getAll();
+            $this->templeater->renderAdmin(
+                'adminCustomer',
+                [
+                    'customers' => $customers
+                ]
+            );
         } else {
             header("location: /admin/login");
         }
@@ -78,7 +84,7 @@ class AdminController extends Controller
         header("location: /admin/book");
     }
 
-    public function update(): void
+    public function updateBook(): void
     {
         if (!$this->authentication->isAdminAuth()) {
             header("location: /admin/login");
@@ -98,9 +104,50 @@ class AdminController extends Controller
         $this->templeater->renderAdmin('addBook');
     }
 
-    public function add(): void
+    public function addBook(): void
     {
         $this->bookService->createBook();
         header("location: /admin/book");
+    }
+
+    public function deleteCustomer(): void
+    {
+        $this->userService->deleteUser($_POST['id']);
+        header("location: /admin/customer");
+    }
+
+    public function updateCustomer(): void
+    {
+        if (!$this->authentication->isAdminAuth()) {
+            header("location: /admin/login");
+        }
+        $currentUser = $this->userService->getByField(['id' => $_GET['id']]);
+        $this->templeater->renderAdmin('updateCustomer', ['customer' => $currentUser]);
+    }
+
+    public function changeCustomerData(): void
+    {
+        $this->userService->updateUser($_POST['id']);
+        header("location: /admin/customer");
+    }
+
+    public function addCustomerForm(): void
+    {
+        $this->templeater->renderAdmin('addCustomer');
+    }
+
+    public function addCustomer(): void
+    {
+        $registrationService = new RegistrationService();
+        $registrationService->registration(
+            $_POST['name'],
+            $_POST['surname'],
+            $_POST['email'],
+            $_POST['phone'],
+            $_POST['login'],
+            $_POST['password'],
+            $_POST['confirm']
+        );
+        header("location: /admin/customer");
     }
 }
